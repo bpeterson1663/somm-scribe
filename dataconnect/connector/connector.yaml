@@ -1,0 +1,7 @@
+connectorId: "somm-scribe-connector"
+authMode: "PUBLIC" 
+generate:
+  javascriptSdk:
+    outputDir: "../../somm-scribe-sdk/generated"
+    jsPackageName: "@sommscribe/wines"
+    packageJsonDir: "../../"

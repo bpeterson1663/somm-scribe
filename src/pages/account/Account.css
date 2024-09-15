@@ -1,0 +1,5 @@
+.plan-card {
+     border: 1px solid var(--mantine-color-secondary-9);
+     border-radius: 8px;
+     min-width: 300px;
+}

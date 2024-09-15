@@ -1,0 +1,31 @@
+.slider {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-size: var(--input-label-size, var(--mantine-font-size-sm));
+}
+
+.form-label {
+    margin-top: 10px;
+    display: inline-block;
+    font-weight: 500;
+    word-break: break-word;
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+    font-size: var(--input-label-size, var(--mantine-font-size-sm));
+}
+
+.label {
+    font-size: var(--input-label-size, var(--mantine-font-size-sm));
+}
+
+.radio-group {
+    margin-top: 10px;
+}
+
+.mark-label {
+    font-size: 0.7rem !important;
+}
+
+.rating {
+    margin-bottom: 80px;
+}

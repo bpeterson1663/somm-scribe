@@ -1,0 +1,85 @@
+
+query ListPlans @auth(level: PUBLIC) {
+    plans {
+        name,
+        id,
+        price,
+        maxWine,
+        maxTasting,
+        description,
+        upgradablePlans,
+        downgradablePlans,
+        isActive,
+        trialLength
+    }
+}
+
+query ListWines($accountId: UUID) @auth(level: USER) {
+  wines(where: {
+    account: { id: { eq: $accountId}}
+  }) {
+    id,
+    accountId,
+    classification,
+    country,
+    date,
+    description,
+    labelUri,
+    price,
+    producer,
+    quantity,
+    region,
+    subregion,
+    varietal,
+    vintage
+  }
+}
+
+query ListTastings($accountId: UUID) @auth(level: USER) {
+  tastings(where: {
+    account: { id: { eq: $accountId}}
+  }) {
+    id,
+    accountId,
+    classification,
+    country,
+    date,
+    description,
+    labelUri,
+    price,
+    producer,
+    quantity,
+    region,
+    subregion,
+    varietal,
+    vintage,
+    hue,
+    color,
+    intensity,
+    smell,
+    alcohol,
+    acidity,
+    tannin,
+    sweet,
+    body,
+    rating,
+    remarks
+  }
+}
+
+query GetAccountById($authId: String) @auth(level: USER) {
+  accounts(where: {
+    authId: {eq: $authId }
+  }) {
+    firstName,
+    lastName,
+    avatar,
+    displayName,
+    authId,
+    email,
+    plan { id },
+    trialExpires,
+    isPaid,
+    id
+  }
+}

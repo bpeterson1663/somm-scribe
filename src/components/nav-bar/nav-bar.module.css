@@ -1,0 +1,32 @@
+.nav-bar {
+    position: sticky;
+    top: 0;
+    left: auto;
+    right: 0;
+    background-color: var(--mantine-color-primary-9);
+    padding: 10px 20px;
+    z-index: 1;
+    min-height: 65px;
+
+    .menu-icon {
+        background-color: var(--mantine-color-secondary-9);
+        border-radius: 4px;
+        color: var(--manine-color-white);
+    }
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon {
+    background-color: var(--mantine-color-secondary-9);
+    color: white;
+    font-size: 24px;
+}
+
+.nav-link {
+    text-decoration: none;
+}

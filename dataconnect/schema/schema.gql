@@ -1,0 +1,66 @@
+type Plan @table {
+    name: String!
+    price: Float!
+    maxWine: Int
+    maxTasting: Int
+    description: String!
+    upgradablePlans: [String]!
+    downgradablePlans: [String]!
+    isActive: Boolean!
+    trialLength: Int!
+}
+
+type Account @table {
+    firstName: String!
+    lastName: String!
+    avatar: String
+    displayName: String
+    authId: String!
+    email: String!
+    plan: Plan!
+    trialExpires: Timestamp!
+    isPaid: Boolean!
+}
+
+type Wine @table {
+    account: Account!
+    classification: String
+    country: String!
+    date: Timestamp!
+    description: String
+    labelUri: String
+    price: Float
+    producer: String!
+    quantity: Int
+    region: String!
+    subregion: String
+    varietal: [String!]!
+    vintage: String!
+}
+
+type Tasting @table {
+    account: Account!
+    classification: String
+    country: String!
+    date: Timestamp!
+    description: String
+    labelUri: String
+    price: Float
+    producer: String!
+    quantity: Int
+    region: String!
+    subregion: String
+    varietal: [String!]!
+    vintage: String!
+    hue: String!
+    color: String!
+    intensity: String!
+    smell: String!
+    alcohol: Int!
+    acidity: Int!
+    tannin: Int!
+    sweet: Int!
+    body: Int!
+    rating: Int!
+    remarks: String
+}
