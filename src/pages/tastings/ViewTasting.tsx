@@ -1,5 +1,5 @@
 import ColorPalette from "@/components/color-palette/color-palette.component";
-import Footer from "@/components/footer/footer.component";
+import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
 import RatingIcon from "@/components/rating/raiting.component";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";

@@ -7,12 +7,10 @@ interface Props {
   children?: ReactNode;
 }
 
-const Footer = ({ children }: Props) => {
+export function Footer({ children }: Props){
   return (
     <footer className={styles.footer}>
       <Group justify="flex-end">{children}</Group>
     </footer>
   );
 };
-
-export default Footer;

@@ -33,16 +33,18 @@ export function BackButton({ label = "Back", showWarning }: Props) {
     <>
       <Modal opened={openConfirm} onClose={() => setOpenConfirm(false)} title="Unsaved Changes" centered>
         <Modal.Body>
-          <p>Are you sure you want to leave before saving your changes?</p>
+          <p data-testid="warning-text">Are you sure you want to leave before saving your changes?</p>
         </Modal.Body>
         <Group justify="space-between">
-          <Button onClick={() => setOpenConfirm(false)}>Cancel</Button>
-          <Button variant="outline" onClick={handleConfirm}>
+          <Button onClick={() => setOpenConfirm(false)} data-testid="cancel">
+            Cancel
+          </Button>
+          <Button variant="outline" onClick={handleConfirm} data-testid="leave">
             Leave
           </Button>
         </Group>
       </Modal>
-      <Button p={5} mt={5} variant="subtle" onClick={handleOnBack}>
+      <Button data-testid="back" p={5} mt={5} variant="subtle" onClick={handleOnBack}>
         <IconArrowLeft height={20} /> {label}
       </Button>
     </>

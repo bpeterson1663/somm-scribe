@@ -1,4 +1,4 @@
-import Footer from "@/components/footer/footer.component";
+import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
 import { selectWineById } from "@/features/cellar/cellarSelectors";
 import { deleteWineThunk, wineSetEdit } from "@/features/cellar/cellarSlice";

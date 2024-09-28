@@ -3,7 +3,7 @@ import styles from "@/components/color-palette/color-palette.module.css";
 import type { ColorT, IntensityT, RedHueT, RoseHueT, WhiteHueT } from "@/schemas/tastings";
 import { Box } from "@mantine/core";
 
-const ColorPalette = ({
+export function ColorPalette({
   color,
   hue,
   intensity,
@@ -11,7 +11,7 @@ const ColorPalette = ({
   color: ColorT;
   hue: RedHueT | WhiteHueT | RoseHueT;
   intensity: IntensityT;
-}) => {
+}){
   const backgroundColor: keyof typeof COLOR_INDEX = `${color}-${intensity}-${hue}` as keyof typeof COLOR_INDEX;
   return (
     <Box

@@ -68,13 +68,14 @@ export const DetailsWine = () => {
         name="date"
         label="Date"
         onChange={onDateChange}
+        data-testid="date"
       />
 
-      <TextInput mt="xs" label="Winery / Producer" required {...form.getInputProps("producer")} />
+      <TextInput data-testid="producer" mt="xs" label="Winery / Producer" required {...form.getInputProps("producer")} />
 
-      <TextInput mt="xs" label="Name / Classification" {...form.getInputProps("classification")} />
+      <TextInput data-testid="classification" mt="xs" label="Name / Classification" {...form.getInputProps("classification")} />
 
-      <PillsInput mt="xs" label="Varietal(s)" required {...form.getInputProps("varietal")}>
+      <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietal")}>
         <Pill.Group>
           {varietals.map((varietal) => (
             <Pill
@@ -97,9 +98,10 @@ export const DetailsWine = () => {
         </Pill.Group>
       </PillsInput>
 
-      <TextInput required mt="xs" label="Vintage" {...form.getInputProps("vintage")} />
+      <TextInput data-testid="vintage" required mt="xs" label="Vintage" {...form.getInputProps("vintage")} />
 
       <Autocomplete
+        data-testid="country"
         autoComplete="country"
         data={countryList}
         required
@@ -108,9 +110,9 @@ export const DetailsWine = () => {
         {...form.getInputProps("country")}
       />
 
-      <TextInput required mt="xs" label="Region" {...form.getInputProps("region")} />
+      <TextInput data-testid="region" required mt="xs" label="Region" {...form.getInputProps("region")} />
 
-      <TextInput mt="xs" label="Subregion" {...form.getInputProps("subregion")} />
+      <TextInput data-testid="subregion" mt="xs" label="Subregion" {...form.getInputProps("subregion")} />
 
       <FileInput
         mt="xs"

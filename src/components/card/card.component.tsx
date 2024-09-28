@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
   wine: WineT | TastingT;
-  url: string;
+  url: "cellar" | "tastings";
   showDate?: boolean;
 }
 
@@ -19,6 +19,7 @@ export function Card({ wine, url, showDate = false }: Props) {
   return (
     <div
       key={id}
+      data-testid="card-container"
       className={`${styles.glass} ${styles.container}`}
       onKeyDown={() => {
         navigate(`/${url}/${id}`);
@@ -28,7 +29,7 @@ export function Card({ wine, url, showDate = false }: Props) {
       }}
     >
       {showDate && (
-        <div className={styles.row}>
+        <div data-testid="date" className={styles.row}>
           <Text size="xs">{dayjs(date).format("MM/DD/YYYY")}</Text>
         </div>
       )}

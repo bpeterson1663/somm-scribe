@@ -1,4 +1,4 @@
-import Footer from "@/components/footer/footer.component";
+import { Footer } from "@/components/footer/footer.component";
 import { DetailsWine, Quantity } from "@/components/form-steps";
 import PageContainer from "@/components/page-container/page-container.component";
 import { uploadImage } from "@/database";

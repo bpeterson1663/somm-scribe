@@ -1,4 +1,4 @@
-import Footer from "@/components/footer/footer.component";
+import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
 import { removeImage, uploadImage } from "@/database";
 import { editAccountThunk } from "@/features/account/accountSlice";
