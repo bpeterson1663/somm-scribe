@@ -71,9 +71,20 @@ export const DetailsWine = () => {
         data-testid="date"
       />
 
-      <TextInput data-testid="producer" mt="xs" label="Winery / Producer" required {...form.getInputProps("producer")} />
+      <TextInput
+        data-testid="producer"
+        mt="xs"
+        label="Winery / Producer"
+        required
+        {...form.getInputProps("producer")}
+      />
 
-      <TextInput data-testid="classification" mt="xs" label="Name / Classification" {...form.getInputProps("classification")} />
+      <TextInput
+        data-testid="classification"
+        mt="xs"
+        label="Name / Classification"
+        {...form.getInputProps("classification")}
+      />
 
       <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietal")}>
         <Pill.Group>

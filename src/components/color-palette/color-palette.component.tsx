@@ -11,7 +11,7 @@ export function ColorPalette({
   color: ColorT;
   hue: RedHueT | WhiteHueT | RoseHueT;
   intensity: IntensityT;
-}){
+}) {
   const backgroundColor: keyof typeof COLOR_INDEX = `${color}-${intensity}-${hue}` as keyof typeof COLOR_INDEX;
   return (
     <Box
@@ -20,6 +20,6 @@ export function ColorPalette({
       data-testid={`${color}-${intensity}-${hue}`}
     />
   );
-};
+}
 
 export default ColorPalette;

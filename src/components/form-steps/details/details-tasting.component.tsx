@@ -6,7 +6,7 @@ import { IconUpload } from "@tabler/icons-react";
 import { countries } from "countries-list";
 import { type ChangeEvent, type KeyboardEvent, useEffect, useState } from "react";
 
-export function DetailsTasting(){
+export function DetailsTasting() {
   const [varietals, setVarietals] = useState([""]);
   const [currentVarietal, setCurrentVarietal] = useState("");
   const { file, blob, imgPreview, handleFileChange } = useFileInput();
@@ -72,9 +72,20 @@ export function DetailsTasting(){
         data-testid="date"
       />
 
-      <TextInput data-testid="producer" mt="xs" required label="Winery / Producer" {...form.getInputProps("producer")} />
+      <TextInput
+        data-testid="producer"
+        mt="xs"
+        required
+        label="Winery / Producer"
+        {...form.getInputProps("producer")}
+      />
 
-      <TextInput data-testid="classification" mt="xs" label="Name / Classification" {...form.getInputProps("classification")} />
+      <TextInput
+        data-testid="classification"
+        mt="xs"
+        label="Name / Classification"
+        {...form.getInputProps("classification")}
+      />
 
       <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietal")}>
         <Pill.Group>
@@ -132,4 +143,4 @@ export function DetailsTasting(){
       )}
     </Box>
   );
-};
+}

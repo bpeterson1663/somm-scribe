@@ -73,7 +73,15 @@ export const ColorSmell = () => {
 
       <ColorPalette color={color} hue={hue} intensity={intensity} />
 
-      <Textarea data-testid="smell" autosize minRows={4} maxRows={4} name="smell" label="Smell" {...form.getInputProps("smell")} />
+      <Textarea
+        data-testid="smell"
+        autosize
+        minRows={4}
+        maxRows={4}
+        name="smell"
+        label="Smell"
+        {...form.getInputProps("smell")}
+      />
     </Flex>
   );
 };
