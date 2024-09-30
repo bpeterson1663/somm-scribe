@@ -29,7 +29,7 @@ import { IconTrash, IconUpload } from "@tabler/icons-react";
 import { selectUserPlan } from "@/features/plan/planSelector";
 import { AccountSchema, type AccountT, defaultAccount } from "@/schemas/account";
 import type { PlanT } from "@/schemas/plans";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Account() {
@@ -56,9 +56,11 @@ export default function Account() {
     validate: zodResolver(AccountSchema),
   });
 
+  const formRef = useRef(form);
+
   useEffect(() => {
-    form.setFieldValue("imageBlob", blob);
-  }, [form, blob]);
+    formRef.current.setFieldValue("imageBlob", blob);
+  }, [blob]);
 
   const handleLogout = async () => {
     await dispatch(fetchLogout(null));

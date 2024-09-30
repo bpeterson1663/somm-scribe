@@ -17,7 +17,7 @@ const driverObj = driver({
     {
       element: "#your-tastings",
       popover: {
-        title: "Animated Tour Example",
+        title: "View All Your Tastings",
         description: "Here is the code example showing animated tour. Let's walk you through it.",
         side: "left",
         align: "start",
@@ -26,8 +26,7 @@ const driverObj = driver({
     {
       element: "#add-tastings",
       popover: {
-        title: "Import the Library",
-        description: "It works the same in vanilla JavaScript as well as frameworks.",
+        title: "Start by adding your first tasting",
         side: "bottom",
         align: "start",
       },

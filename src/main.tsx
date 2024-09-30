@@ -56,7 +56,6 @@ const theme = createTheme({
       },
     }),
   },
-  /** Put your mantine theme override here */
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
