@@ -1,22 +1,32 @@
-import Layout from "@/components/layout/layout.component";
+import { type ReactNode, useContext, useEffect, lazy, Suspense } from "react";
+import { LoadingOverlay } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
+import { Navigate, Route, Routes } from "react-router-dom";
+
 import { UserContext } from "@/context/user.context";
 import { fetchWinesThunk } from "@/features/cellar/cellarSlice";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
 import { fetchPlans } from "@/features/plan/planSlice";
 import { fetchTastingsThunk } from "@/features/tasting/tastingSlice";
-import { Account } from "@/pages/account";
-import SignInUp from "@/pages/auth/SignInUp";
-import { Cellar, EditWine, NewWine, ViewWine } from "@/pages/cellar";
-import Home from "@/pages/home/Home";
-import NotFound from "@/pages/not-found/NotFound";
-import EditTasting from "@/pages/tastings/EditTasting";
-import NewTasting from "@/pages/tastings/NewTasting";
-import Tastings from "@/pages/tastings/Tastings";
-import ViewTasting from "@/pages/tastings/ViewTasting";
-import { LoadingOverlay } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
-import { type ReactNode, useContext, useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+
+const Layout = lazy(() => import("@/components/layout/layout.component"));
+
+const SignInUp = lazy(() => import("@/pages/auth/SignInUp"));
+
+const Home = lazy(() => import("@/pages/home/Home"));
+const Account = lazy(() => import("@/pages/account/Account"));
+
+const Cellar = lazy(() => import("@/pages/cellar/Cellar"))
+const EditWine = lazy(() => import("@/pages/cellar/EditWine"));
+const NewWine = lazy(() => import("@/pages/cellar/NewWine"));
+const ViewWine = lazy(() => import("@/pages/cellar/ViewWine"))
+
+const Tastings = lazy(() => import("@/pages/tastings/Tastings"));
+const EditTasting = lazy(() => import("@/pages/tastings/EditTasting"));
+const NewTasting = lazy(() => import("@/pages/tastings/NewTasting"));
+const ViewTasting = lazy(() => import("@/pages/tastings/ViewTasting"));
+
+const NotFound = lazy(() => import("@/pages/not-found/NotFound"));
 
 function App() {
   const dispatch = useAppDispatch();
@@ -63,6 +73,12 @@ function App() {
   };
 
   return (
+    <Suspense fallback={<LoadingOverlay
+      loaderProps={{ color: "red" }}
+      visible
+      zIndex={1000}
+      overlayProps={{ radius: "sm", blur: 2 }}
+    />}>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="/login" element={<SignInUp />} />
@@ -89,6 +105,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
+    </Suspense>
   );
 }
 
