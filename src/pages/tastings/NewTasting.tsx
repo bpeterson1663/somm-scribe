@@ -48,7 +48,7 @@ const NewTasting = () => {
   const onSubmitHandler = async (data: TastingT) => {
     setIsLoading(true);
     try {
-      if (tastingOpen) {
+      if (tastingOpen?.quantity) {
         const quantity = tastingOpen.quantity > 0 ? tastingOpen.quantity - 1 : 0;
         dispatch(editWineThunk({ ...tastingOpen, quantity })).unwrap();
       }

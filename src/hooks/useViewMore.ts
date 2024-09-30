@@ -25,8 +25,8 @@ export function useViewMore(list: TastingT[] | WineT[]) {
     if (search !== "") {
       const searched = list.filter(
         (wine) =>
-          wine.classification.toLowerCase().includes(search.toLowerCase()) ||
-          wine.producer.toLowerCase().includes(search.toLowerCase()),
+          wine.classification?.toLowerCase().includes(search.toLowerCase()) ||
+          wine.producer?.toLowerCase().includes(search.toLowerCase()),
       );
       setViewable(searched);
     } else {
@@ -40,7 +40,7 @@ export function useViewMore(list: TastingT[] | WineT[]) {
         .slice(0, lastCount + VIEW_INCREMENT)
         .filter(
           (wine) =>
-            wine.classification.toLowerCase().includes(search.toLowerCase()) ||
+            wine.classification?.toLowerCase().includes(search.toLowerCase()) ||
             wine.producer.toLowerCase().includes(search.toLowerCase()),
         );
 

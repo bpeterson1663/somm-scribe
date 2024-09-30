@@ -20,12 +20,11 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   const dispatch = useAppDispatch();
-  const { currentUser } = useAppSelector((state) => state.auth);
   const { account } = useAppSelector((state) => state.account);
   useEffect(() => {
     const onLoad = async () => {
       await dispatch(fetchPlans()).unwrap();
-      if (currentUser?.uid) {
+      if (account?.id) {
         try {
           await Promise.all([
             dispatch(fetchTastingsThunk({ accountId: account.id })),
@@ -41,7 +40,7 @@ function App() {
       }
     };
     onLoad();
-  }, [dispatch, currentUser, account]);
+  }, [dispatch, account]);
 
   const ProtectedRoute = ({ component }: { component: ReactNode }) => {
     const { currentUser, loading } = useContext(UserContext);

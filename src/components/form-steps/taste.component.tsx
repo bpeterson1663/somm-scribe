@@ -4,7 +4,7 @@ import {
   BODY_MARKS,
   SWEET_MARKS,
   TANNIN_ACIDITY_MARKS,
-} from "@/components/form-tasting/form-tasting.constants";
+} from "@/components/form-steps/form-tasting.constants";
 import { getLabel } from "@/helpers";
 import { useTastingContext } from "@/pages/tastings/form-context";
 import { Box, Group, Modal, Slider, Text } from "@mantine/core";

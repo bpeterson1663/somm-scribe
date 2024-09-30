@@ -6,7 +6,7 @@ import {
   BODY_MARKS,
   SWEET_MARKS,
   TANNIN_ACIDITY_MARKS,
-} from "@/components/form-tasting/form-tasting.constants";
+} from "@/components/form-steps/form-tasting.constants";
 import type { WineT } from "@/schemas/cellar";
 import type { TastingT } from "@/schemas/tastings";
 import { isTastingT } from "@/schemas/utils";
