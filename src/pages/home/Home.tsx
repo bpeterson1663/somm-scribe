@@ -7,74 +7,74 @@ import { selectUserPlan } from "@/features/plan/planSelector";
 import { selectAllTastings } from "@/features/tasting/tastingSelectors";
 import styles from "@/pages/styles/pages.module.css";
 import { Button, Group, Stack, Title } from "@mantine/core";
-import { driver } from "driver.js";
+// import { driver } from "driver.js";
 import { useNavigate } from "react-router-dom";
 import "driver.js/dist/driver.css";
 
-const driverObj = driver({
-  showProgress: true,
-  steps: [
-    {
-      element: "#your-tastings",
-      popover: {
-        title: "View All Your Tastings",
-        description: "Here is the code example showing animated tour. Let's walk you through it.",
-        side: "left",
-        align: "start",
-      },
-    },
-    {
-      element: "#add-tastings",
-      popover: {
-        title: "Start by adding your first tasting",
-        side: "bottom",
-        align: "start",
-      },
-    },
-    {
-      element: "code .line:nth-child(2)",
-      popover: {
-        title: "Importing CSS",
-        description: "Import the CSS which gives you the default styling for popover and overlay.",
-        side: "bottom",
-        align: "start",
-      },
-    },
-    {
-      element: "code .line:nth-child(4) span:nth-child(7)",
-      popover: {
-        title: "Create Driver",
-        description: "Simply call the driver function to create a driver.js instance",
-        side: "left",
-        align: "start",
-      },
-    },
-    {
-      element: "code .line:nth-child(18)",
-      popover: {
-        title: "Start Tour",
-        description: "Call the drive method to start the tour and your tour will be started.",
-        side: "top",
-        align: "start",
-      },
-    },
-    {
-      element: 'a[href="/docs/configuration"]',
-      popover: {
-        title: "More Configuration",
-        description: "Look at this page for all the configuration options you can pass.",
-        side: "right",
-        align: "start",
-      },
-    },
-    {
-      popover: {
-        title: "Happy Coding",
-        description: "And that is all, go ahead and start adding tours to your applications.",
-      },
-    },
-  ],
-});
+// const driverObj = driver({
+//   showProgress: true,
+//   steps: [
+//     {
+//       element: "#your-tastings",
+//       popover: {
+//         title: "View All Your Tastings",
+//         description: "Here is the code example showing animated tour. Let's walk you through it.",
+//         side: "left",
+//         align: "start",
+//       },
+//     },
+//     {
+//       element: "#add-tastings",
+//       popover: {
+//         title: "Start by adding your first tasting",
+//         side: "bottom",
+//         align: "start",
+//       },
+//     },
+//     {
+//       element: "code .line:nth-child(2)",
+//       popover: {
+//         title: "Importing CSS",
+//         description: "Import the CSS which gives you the default styling for popover and overlay.",
+//         side: "bottom",
+//         align: "start",
+//       },
+//     },
+//     {
+//       element: "code .line:nth-child(4) span:nth-child(7)",
+//       popover: {
+//         title: "Create Driver",
+//         description: "Simply call the driver function to create a driver.js instance",
+//         side: "left",
+//         align: "start",
+//       },
+//     },
+//     {
+//       element: "code .line:nth-child(18)",
+//       popover: {
+//         title: "Start Tour",
+//         description: "Call the drive method to start the tour and your tour will be started.",
+//         side: "top",
+//         align: "start",
+//       },
+//     },
+//     {
+//       element: 'a[href="/docs/configuration"]',
+//       popover: {
+//         title: "More Configuration",
+//         description: "Look at this page for all the configuration options you can pass.",
+//         side: "right",
+//         align: "start",
+//       },
+//     },
+//     {
+//       popover: {
+//         title: "Happy Coding",
+//         description: "And that is all, go ahead and start adding tours to your applications.",
+//       },
+//     },
+//   ],
+// });
 
 export default function Home() {
   const navigate = useNavigate();
@@ -86,7 +86,7 @@ export default function Home() {
     b.date.toISOString().localeCompare(a.date.toISOString()),
   );
 
-  driverObj.drive();
+  // driverObj.drive();
 
   return (
     <PageContainer>
