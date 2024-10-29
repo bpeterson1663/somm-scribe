@@ -23,8 +23,7 @@ export default function PageContainer({
     <main className={styles.main}>
       {(showBack || showCancel) && <BackButton showWarning={showWarning} label={showCancel ? "Cancel" : "Back"} />}
       <header className={styles["header-row"]}>{title && <Title order={2}> {title} </Title>}</header>
-
-      <Container mx={0} px={0}>
+      <Container mt="md" maw="100%">
         {children}
       </Container>
     </main>
