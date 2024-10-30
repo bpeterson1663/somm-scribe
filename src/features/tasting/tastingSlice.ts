@@ -121,7 +121,7 @@ export const createTastingThunk = createAsyncThunk<
   const quantity = typeof request.quantity === "string" ? Number.parseInt(request.quantity) : request.quantity;
   const price = typeof request.price === "string" ? Number.parseFloat(request.price) : request.price;
   try {
-    const accountId = request.accountId as unknown;
+    const account = { id: request.accountId } as unknown;
     const {
       classification,
       country,
@@ -146,7 +146,7 @@ export const createTastingThunk = createAsyncThunk<
       remarks,
     } = request;
     const tastingData = {
-      account: accountId as Account_Key,
+      account: account as Account_Key,
       classification,
       country,
       date: date.toISOString(),

@@ -16,7 +16,7 @@ export const DetailsWine = () => {
   useEffect(() => {
     setVarietals(form.values.varietal);
     form.setFieldValue("imageBlob", blob);
-  }, [form, blob]);
+  }, [blob]);
 
   const handleRemove = (val: string) => {
     form.setFieldValue(
