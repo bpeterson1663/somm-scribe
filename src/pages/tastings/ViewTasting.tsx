@@ -119,7 +119,7 @@ export default function TastingId() {
           />
         </Modal>
         <Stack align="flex-start" justify="flex-start" gap="xs" mt={10} w={180}>
-          {classification && <Title order={5}>Name: {classification}</Title>}
+          {classification && <Title order={5}>Name/Classification: {classification}</Title>}
           <Text size="md">Varietal(s): {varietal.join(", ")}</Text>
           <Text size="md">Vintage: {vintage}</Text>
           <Text size="md">Country: {country}</Text>

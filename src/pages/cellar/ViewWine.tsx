@@ -108,7 +108,7 @@ export default function ViewWine() {
         </div>
         <div className={styles.column}>
           {producer && <Title order={6}>Winery: {producer}</Title>}
-          {classification && <Title order={6}>Name: {classification}</Title>}
+          {classification && <Title order={6}>Name/Classification: {classification}</Title>}
           <Text size="sm">Varietal(s): {varietal.join(", ")}</Text>
           <Text size="sm">Vintage: {vintage}</Text>
           <Text size="sm">Country: {country}</Text>
