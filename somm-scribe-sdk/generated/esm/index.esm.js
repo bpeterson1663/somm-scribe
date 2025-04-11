@@ -20,13 +20,6 @@ export function createAccountRef(dcOrVars, vars) {
 export function createAccount(dcOrVars, vars) {
   return executeMutation(createAccountRef(dcOrVars, vars));
 }
-export function createWineRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return mutationRef(dcInstance, 'CreateWine', inputVars);
-}
-export function createWine(dcOrVars, vars) {
-  return executeMutation(createWineRef(dcOrVars, vars));
-}
 export function createTastingRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
   return mutationRef(dcInstance, 'CreateTasting', inputVars);
@@ -41,26 +34,12 @@ export function updateAccountRef(dcOrVars, vars) {
 export function updateAccount(dcOrVars, vars) {
   return executeMutation(updateAccountRef(dcOrVars, vars));
 }
-export function updateWineRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return mutationRef(dcInstance, 'UpdateWine', inputVars);
-}
-export function updateWine(dcOrVars, vars) {
-  return executeMutation(updateWineRef(dcOrVars, vars));
-}
 export function updateTastingRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
   return mutationRef(dcInstance, 'UpdateTasting', inputVars);
 }
 export function updateTasting(dcOrVars, vars) {
   return executeMutation(updateTastingRef(dcOrVars, vars));
-}
-export function deleteWineRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars, true);
-  return mutationRef(dcInstance, 'DeleteWine', inputVars);
-}
-export function deleteWine(dcOrVars, vars) {
-  return executeMutation(deleteWineRef(dcOrVars, vars));
 }
 export function deleteTastingRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars, true);
@@ -75,13 +54,6 @@ export function listPlansRef(dc) {
 }
 export function listPlans(dc) {
   return executeQuery(listPlansRef(dc));
-}
-export function listWinesRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return queryRef(dcInstance, 'ListWines', inputVars);
-}
-export function listWines(dcOrVars, vars) {
-  return executeQuery(listWinesRef(dcOrVars, vars));
 }
 export function listTastingsRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);

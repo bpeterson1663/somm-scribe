@@ -4,7 +4,6 @@ import { type ReactNode, Suspense, lazy, useContext, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { UserContext } from "@/context/user.context";
-import { fetchWinesThunk } from "@/features/cellar/cellarSlice";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
 import { fetchPlans } from "@/features/plan/planSlice";
 import { fetchTastingsThunk } from "@/features/tasting/tastingSlice";
@@ -15,11 +14,6 @@ const SignInUp = lazy(() => import("@/pages/auth/SignInUp"));
 
 const Home = lazy(() => import("@/pages/home/Home"));
 const Account = lazy(() => import("@/pages/account/Account"));
-
-const Cellar = lazy(() => import("@/pages/cellar/Cellar"));
-const EditWine = lazy(() => import("@/pages/cellar/EditWine"));
-const NewWine = lazy(() => import("@/pages/cellar/NewWine"));
-const ViewWine = lazy(() => import("@/pages/cellar/ViewWine"));
 
 const Tastings = lazy(() => import("@/pages/tastings/Tastings"));
 const EditTasting = lazy(() => import("@/pages/tastings/EditTasting"));
@@ -36,10 +30,7 @@ function App() {
       await dispatch(fetchPlans()).unwrap();
       if (account?.id) {
         try {
-          await Promise.all([
-            dispatch(fetchTastingsThunk({ accountId: account.id })),
-            dispatch(fetchWinesThunk({ accountId: account.id })),
-          ]);
+          await dispatch(fetchTastingsThunk({ accountId: account.id }))
         } catch (err) {
           console.error(err);
           notifications.show({
@@ -88,13 +79,6 @@ function App() {
             <Route path=":id" element={<ProtectedRoute component={<ViewTasting />} />} />
             <Route path="new" element={<ProtectedRoute component={<NewTasting />} />} />
             <Route path="edit" element={<ProtectedRoute component={<EditTasting />} />} />
-          </Route>
-
-          <Route path="/cellar">
-            <Route index element={<ProtectedRoute component={<Cellar />} />} />
-            <Route path=":id" element={<ProtectedRoute component={<ViewWine />} />} />
-            <Route path="new" element={<ProtectedRoute component={<NewWine />} />} />
-            <Route path="edit" element={<ProtectedRoute component={<EditWine />} />} />
           </Route>
 
           <Route path="/account">

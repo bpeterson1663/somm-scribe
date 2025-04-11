@@ -14,27 +14,6 @@ query ListPlans @auth(level: PUBLIC) {
     }
 }
 
-query ListWines($accountId: UUID) @auth(level: USER) {
-  wines(where: {
-    account: { id: { eq: $accountId}}
-  }) {
-    id,
-    accountId,
-    classification,
-    country,
-    date,
-    description,
-    labelUri,
-    price,
-    producer,
-    quantity,
-    region,
-    subregion,
-    varietal,
-    vintage
-  }
-}
-
 query ListTastings($accountId: UUID) @auth(level: USER) {
   tastings(where: {
     account: { id: { eq: $accountId}}

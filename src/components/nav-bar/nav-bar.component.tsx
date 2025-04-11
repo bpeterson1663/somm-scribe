@@ -1,6 +1,5 @@
 import styles from "@/components/nav-bar/nav-bar.module.css";
 import { useAppSelector } from "@/features/hooks";
-import { selectUserPlan } from "@/features/plan/planSelector";
 import { useMobile } from "@/hooks/useMobile";
 import { Avatar, Burger, Button, Container, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -12,7 +11,6 @@ const NavBar = () => {
   const isMobile = useMobile();
   const { currentUser } = useAppSelector((state) => state.auth);
   const { account } = useAppSelector((state) => state.account);
-  const currentPlan = useAppSelector(selectUserPlan);
 
   function getInitials() {
     const first = account?.firstName[0] ?? "";
@@ -39,7 +37,6 @@ const NavBar = () => {
             <Menu.Dropdown>
               <Menu.Item onClick={() => navigate("/")}>Home</Menu.Item>
               <Menu.Item onClick={() => navigate("/tastings")}>Tastings</Menu.Item>
-              {currentPlan.maxWine !== 0 && <Menu.Item onClick={() => navigate("/cellar")}>Cellar</Menu.Item>}
               <Menu.Divider />
               <Menu.Item onClick={() => navigate("/account")}>Account</Menu.Item>
             </Menu.Dropdown>
@@ -54,7 +51,6 @@ const NavBar = () => {
           <Group>
             <Button onClick={() => navigate("/")}>Home</Button>
             <Button onClick={() => navigate("/tastings")}>Tastings</Button>
-            {currentPlan.maxWine !== 0 && <Button onClick={() => navigate("/cellar")}>Cellar</Button>}
           </Group>
           <Group justify="flex-end">
             <Avatar

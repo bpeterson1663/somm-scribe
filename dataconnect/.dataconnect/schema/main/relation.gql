@@ -3,10 +3,6 @@ extend type Account {
   ✨ List Tasting entries in a one-to-many relationship with this object (i.e. where `Tasting.account` equals this object).
   """
   tastings_on_account(where: Tasting_Filter, orderBy: [Tasting_Order!], limit: Int = 100): [Tasting!]!
-  """
-  ✨ List Wine entries in a one-to-many relationship with this object (i.e. where `Wine.account` equals this object).
-  """
-  wines_on_account(where: Wine_Filter, orderBy: [Wine_Order!], limit: Int = 100): [Wine!]!
 }
 extend type Plan {
   """

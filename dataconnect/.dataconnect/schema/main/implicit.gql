@@ -9,7 +9,3 @@ extend type Tasting {
   id: UUID! @default(expr: "uuidV4()")
   accountId: UUID!
 }
-extend type Wine {
-  id: UUID! @default(expr: "uuidV4()")
-  accountId: UUID!
-}

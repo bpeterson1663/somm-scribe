@@ -1,7 +1,6 @@
 scalar Account_Key
 scalar Plan_Key
 scalar Tasting_Key
-scalar Wine_Key
 input Account_Data {
   id: UUID
   id_expr: UUID_Expr
@@ -41,7 +40,6 @@ input Account_Filter {
   lastName: String_Filter
   trialExpires: Timestamp_Filter
   tastings_on_account: Tasting_ListFilter
-  wines_on_account: Wine_ListFilter
 }
 input Account_ListFilter {
   count: Int_Filter
@@ -208,73 +206,5 @@ input Tasting_Order {
   subregion: OrderDirection
   sweet: OrderDirection
   tannin: OrderDirection
-  vintage: OrderDirection
-}
-input Wine_Data {
-  id: UUID
-  id_expr: UUID_Expr
-  accountId: UUID
-  accountId_expr: UUID_Expr
-  account: Account_Key
-  classification: String
-  classification_expr: String_Expr
-  country: String
-  country_expr: String_Expr
-  date: Timestamp
-  date_expr: Timestamp_Expr
-  date_time: Timestamp_Relative
-  description: String
-  description_expr: String_Expr
-  labelUri: String
-  labelUri_expr: String_Expr
-  price: Float
-  producer: String
-  producer_expr: String_Expr
-  quantity: Int
-  region: String
-  region_expr: String_Expr
-  subregion: String
-  subregion_expr: String_Expr
-  varietal: [String!]
-  vintage: String
-  vintage_expr: String_Expr
-}
-input Wine_Filter {
-  _and: [Wine_Filter!]
-  _not: Wine_Filter
-  _or: [Wine_Filter!]
-  id: UUID_Filter
-  accountId: UUID_Filter
-  account: Account_Filter
-  classification: String_Filter
-  country: String_Filter
-  date: Timestamp_Filter
-  description: String_Filter
-  labelUri: String_Filter
-  price: Float_Filter
-  producer: String_Filter
-  quantity: Int_Filter
-  region: String_Filter
-  subregion: String_Filter
-  varietal: String_ListFilter
-  vintage: String_Filter
-}
-input Wine_ListFilter {
-  count: Int_Filter
-  exist: Wine_Filter
-}
-input Wine_Order {
-  id: OrderDirection
-  accountId: OrderDirection
-  classification: OrderDirection
-  country: OrderDirection
-  date: OrderDirection
-  description: OrderDirection
-  labelUri: OrderDirection
-  price: OrderDirection
-  producer: OrderDirection
-  quantity: OrderDirection
-  region: OrderDirection
-  subregion: OrderDirection
   vintage: OrderDirection
 }

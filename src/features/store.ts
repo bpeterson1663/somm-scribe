@@ -1,6 +1,5 @@
 import accountReducer from "@/features/account/accountSlice";
 import authReducer from "@/features/auth/authSlice";
-import cellarReducer from "@/features/cellar/cellarSlice";
 import planReducer from "@/features/plan/planSlice";
 import tastingReducer from "@/features/tasting/tastingSlice";
 import { type Action, type ThunkAction, configureStore } from "@reduxjs/toolkit";
@@ -10,7 +9,6 @@ export const store = configureStore({
     auth: authReducer,
     tasting: tastingReducer,
     account: accountReducer,
-    cellar: cellarReducer,
     plan: planReducer,
   },
   middleware: (getDefaultMiddleware) =>

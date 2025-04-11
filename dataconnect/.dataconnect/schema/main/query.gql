@@ -12,10 +12,6 @@ extend type Query {
   """
   tasting(id: UUID, key: Tasting_Key): Tasting
   """
-  Look up a single Wine based on `id` or `key` and return selected fields (or `null` if not found).
-  """
-  wine(id: UUID, key: Wine_Key): Wine
-  """
   List Account entries in the table, optionally filtered by `where` conditions.
   """
   accounts(where: Account_Filter, orderBy: [Account_Order!], limit: Int = 100): [Account!]!
@@ -27,8 +23,4 @@ extend type Query {
   List Tasting entries in the table, optionally filtered by `where` conditions.
   """
   tastings(where: Tasting_Filter, orderBy: [Tasting_Order!], limit: Int = 100): [Tasting!]!
-  """
-  List Wine entries in the table, optionally filtered by `where` conditions.
-  """
-  wines(where: Wine_Filter, orderBy: [Wine_Order!], limit: Int = 100): [Wine!]!
 }

@@ -78,39 +78,11 @@ export interface CreateTastingVariables {
   remarks?: string | null;
 }
 
-export interface CreateWineResponse {
-  wine_insert: Wine_Key;
-}
-
-export interface CreateWineVariables {
-  account?: Account_Key | null;
-  classification?: string | null;
-  country?: string | null;
-  date?: TimestampString | null;
-  description?: string | null;
-  labelUri?: string | null;
-  price?: number | null;
-  producer?: string | null;
-  quantity?: number | null;
-  region?: string | null;
-  subregion?: string | null;
-  varietal?: string[] | null;
-  vintage?: string | null;
-}
-
 export interface DeleteTastingResponse {
   tasting_delete?: Tasting_Key | null;
 }
 
 export interface DeleteTastingVariables {
-  id: UUIDString;
-}
-
-export interface DeleteWineResponse {
-  wine_delete?: Wine_Key | null;
-}
-
-export interface DeleteWineVariables {
   id: UUIDString;
 }
 
@@ -184,29 +156,6 @@ export interface ListTastingsVariables {
   accountId?: UUIDString | null;
 }
 
-export interface ListWinesResponse {
-  wines: ({
-    id: UUIDString;
-    accountId: UUIDString;
-    classification?: string | null;
-    country: string;
-    date: TimestampString;
-    description?: string | null;
-    labelUri?: string | null;
-    price?: number | null;
-    producer: string;
-    quantity?: number | null;
-    region: string;
-    subregion?: string | null;
-    varietal: string[];
-    vintage: string;
-  } & Wine_Key)[];
-}
-
-export interface ListWinesVariables {
-  accountId?: UUIDString | null;
-}
-
 export interface Plan_Key {
   id: UUIDString;
   __typename?: 'Plan_Key';
@@ -265,31 +214,6 @@ export interface UpdateTastingVariables {
   remarks?: string | null;
 }
 
-export interface UpdateWineResponse {
-  wine_update?: Wine_Key | null;
-}
-
-export interface UpdateWineVariables {
-  id?: UUIDString | null;
-  classification?: string | null;
-  country?: string | null;
-  date?: TimestampString | null;
-  description?: string | null;
-  labelUri?: string | null;
-  price?: number | null;
-  producer?: string | null;
-  quantity?: number | null;
-  region?: string | null;
-  subregion?: string | null;
-  varietal?: string[] | null;
-  vintage?: string | null;
-}
-
-export interface Wine_Key {
-  id: UUIDString;
-  __typename?: 'Wine_Key';
-}
-
 
 
 /* Allow users to create refs without passing in DataConnect */
@@ -311,15 +235,6 @@ export function createAccount(dc: DataConnect, vars?: CreateAccountVariables): M
 
 
 /* Allow users to create refs without passing in DataConnect */
-export function createWineRef(vars?: CreateWineVariables): MutationRef<CreateWineResponse, CreateWineVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function createWineRef(dc: DataConnect, vars?: CreateWineVariables): MutationRef<CreateWineResponse,CreateWineVariables>;
-
-export function createWine(vars?: CreateWineVariables): MutationPromise<CreateWineResponse, CreateWineVariables>;
-export function createWine(dc: DataConnect, vars?: CreateWineVariables): MutationPromise<CreateWineResponse,CreateWineVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
 export function createTastingRef(vars?: CreateTastingVariables): MutationRef<CreateTastingResponse, CreateTastingVariables>;
 /* Allow users to pass in custom DataConnect instances */
 export function createTastingRef(dc: DataConnect, vars?: CreateTastingVariables): MutationRef<CreateTastingResponse,CreateTastingVariables>;
@@ -338,30 +253,12 @@ export function updateAccount(dc: DataConnect, vars?: UpdateAccountVariables): M
 
 
 /* Allow users to create refs without passing in DataConnect */
-export function updateWineRef(vars?: UpdateWineVariables): MutationRef<UpdateWineResponse, UpdateWineVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function updateWineRef(dc: DataConnect, vars?: UpdateWineVariables): MutationRef<UpdateWineResponse,UpdateWineVariables>;
-
-export function updateWine(vars?: UpdateWineVariables): MutationPromise<UpdateWineResponse, UpdateWineVariables>;
-export function updateWine(dc: DataConnect, vars?: UpdateWineVariables): MutationPromise<UpdateWineResponse,UpdateWineVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
 export function updateTastingRef(vars?: UpdateTastingVariables): MutationRef<UpdateTastingResponse, UpdateTastingVariables>;
 /* Allow users to pass in custom DataConnect instances */
 export function updateTastingRef(dc: DataConnect, vars?: UpdateTastingVariables): MutationRef<UpdateTastingResponse,UpdateTastingVariables>;
 
 export function updateTasting(vars?: UpdateTastingVariables): MutationPromise<UpdateTastingResponse, UpdateTastingVariables>;
 export function updateTasting(dc: DataConnect, vars?: UpdateTastingVariables): MutationPromise<UpdateTastingResponse,UpdateTastingVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function deleteWineRef(vars: DeleteWineVariables): MutationRef<DeleteWineResponse, DeleteWineVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function deleteWineRef(dc: DataConnect, vars: DeleteWineVariables): MutationRef<DeleteWineResponse,DeleteWineVariables>;
-
-export function deleteWine(vars: DeleteWineVariables): MutationPromise<DeleteWineResponse, DeleteWineVariables>;
-export function deleteWine(dc: DataConnect, vars: DeleteWineVariables): MutationPromise<DeleteWineResponse,DeleteWineVariables>;
 
 
 /* Allow users to create refs without passing in DataConnect */
@@ -379,15 +276,6 @@ export function listPlansRef(dc: DataConnect): QueryRef<ListPlansResponse,undefi
 
 export function listPlans(): QueryPromise<ListPlansResponse, undefined>;
 export function listPlans(dc: DataConnect): QueryPromise<ListPlansResponse,undefined>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function listWinesRef(vars?: ListWinesVariables): QueryRef<ListWinesResponse, ListWinesVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function listWinesRef(dc: DataConnect, vars?: ListWinesVariables): QueryRef<ListWinesResponse,ListWinesVariables>;
-
-export function listWines(vars?: ListWinesVariables): QueryPromise<ListWinesResponse, ListWinesVariables>;
-export function listWines(dc: DataConnect, vars?: ListWinesVariables): QueryPromise<ListWinesResponse,ListWinesVariables>;
 
 
 /* Allow users to create refs without passing in DataConnect */

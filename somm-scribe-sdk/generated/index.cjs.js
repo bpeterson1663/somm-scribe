@@ -25,15 +25,6 @@ exports.createAccount = function createAccount(dcOrVars, vars) {
   return executeMutation(createAccountRef(dcOrVars, vars));
 };
 
-function createWineRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return mutationRef(dcInstance, 'CreateWine', inputVars);
-}
-exports.createWineRef = createWineRef;
-exports.createWine = function createWine(dcOrVars, vars) {
-  return executeMutation(createWineRef(dcOrVars, vars));
-};
-
 function createTastingRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
   return mutationRef(dcInstance, 'CreateTasting', inputVars);
@@ -52,15 +43,6 @@ exports.updateAccount = function updateAccount(dcOrVars, vars) {
   return executeMutation(updateAccountRef(dcOrVars, vars));
 };
 
-function updateWineRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return mutationRef(dcInstance, 'UpdateWine', inputVars);
-}
-exports.updateWineRef = updateWineRef;
-exports.updateWine = function updateWine(dcOrVars, vars) {
-  return executeMutation(updateWineRef(dcOrVars, vars));
-};
-
 function updateTastingRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
   return mutationRef(dcInstance, 'UpdateTasting', inputVars);
@@ -68,15 +50,6 @@ function updateTastingRef(dcOrVars, vars) {
 exports.updateTastingRef = updateTastingRef;
 exports.updateTasting = function updateTasting(dcOrVars, vars) {
   return executeMutation(updateTastingRef(dcOrVars, vars));
-};
-
-function deleteWineRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars, true);
-  return mutationRef(dcInstance, 'DeleteWine', inputVars);
-}
-exports.deleteWineRef = deleteWineRef;
-exports.deleteWine = function deleteWine(dcOrVars, vars) {
-  return executeMutation(deleteWineRef(dcOrVars, vars));
 };
 
 function deleteTastingRef(dcOrVars, vars) {
@@ -95,15 +68,6 @@ function listPlansRef(dc) {
 exports.listPlansRef = listPlansRef;
 exports.listPlans = function listPlans(dc) {
   return executeQuery(listPlansRef(dc));
-};
-
-function listWinesRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return queryRef(dcInstance, 'ListWines', inputVars);
-}
-exports.listWinesRef = listWinesRef;
-exports.listWines = function listWines(dcOrVars, vars) {
-  return executeQuery(listWinesRef(dcOrVars, vars));
 };
 
 function listTastingsRef(dcOrVars, vars) {

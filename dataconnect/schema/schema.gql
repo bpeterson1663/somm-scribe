@@ -22,22 +22,6 @@ type Account @table {
     isPaid: Boolean!
 }
 
-type Wine @table {
-    account: Account!
-    classification: String
-    country: String!
-    date: Timestamp!
-    description: String
-    labelUri: String
-    price: Float
-    producer: String!
-    quantity: Int
-    region: String!
-    subregion: String
-    varietal: [String!]!
-    vintage: String!
-}
-
 type Tasting @table {
     account: Account!
     classification: String
