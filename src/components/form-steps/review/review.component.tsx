@@ -51,13 +51,13 @@ export function Review() {
   return (
     <Box>
       <Textarea
-        data-testid="remarks"
+        data-testid="notes"
         autosize
         minRows={4}
         maxRows={4}
-        id="remarks"
-        label="Remarks"
-        {...form.getInputProps("remarks")}
+        id="notes"
+        label="Notes"
+        {...form.getInputProps("notes")}
       />
       <Text className={styles["form-label"]}>Rating</Text>
 

@@ -48,7 +48,7 @@ export const tastingSlice = createSlice({
             ...tasting,
             price: typeof price === "number" ? price : 0.0,
             date: new Date(tasting.date),
-            labelUri: tasting.labelUri ?? "",
+            labelUri: tasting.imageUrl ?? "",
             name: tasting.name ?? "",
             type: "tasting",
           } as unknown;
@@ -114,13 +114,20 @@ export const createTastingThunk = createAsyncThunk<
   try {
     const account = { id: request.accountId } as unknown;
     const {
-    
+      tags,
+      varietals,
+      name,
+      notes,
       date,
       region,
 
       rating,
     } = request;
     const tastingData = {
+      name,
+      tags,
+      notes,
+      varietals,
       account: account as Account_Key,
       date: date.toISOString(),
       price,

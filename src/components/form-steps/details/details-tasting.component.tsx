@@ -7,22 +7,33 @@ import { type ChangeEvent, type KeyboardEvent, useEffect, useState } from "react
 
 export function DetailsTasting() {
   const [varietals, setVarietals] = useState([""]);
+  const [tags, setTags] = useState([""])
   const [currentVarietal, setCurrentVarietal] = useState("");
+  const [currentTag, setCurrentTag] = useState("");
   const { file, blob, imgPreview, handleFileChange } = useFileInput();
   const form = useTastingContext();
 
 
   useEffect(() => {
     setVarietals(form.values.varietals);
+    setTags(form.values.tags)
     form.setFieldValue("imageBlob", blob);
   }, [blob]);
 
   const handleRemove = (val: string) => {
     form.setFieldValue(
-      "varietal",
+      "varietals",
       varietals.filter((varietal) => varietal !== val),
     );
     setVarietals(varietals.filter((varietal) => varietal !== val));
+  };
+
+  const handleTagRemove = (val: string) => {
+    form.setFieldValue(
+      "tags",
+      tags.filter((tag) => tag !== val),
+    );
+    setTags(tags.filter((tag) => tag !== val));
   };
 
   const onDateChange = (value: Date | null) => {
@@ -39,8 +50,21 @@ export function DetailsTasting() {
       }
 
       setVarietals([...varietals, currentVarietal]);
-      form.setFieldValue("varietal", [...varietals, currentVarietal]);
+      form.setFieldValue("varietals", [...varietals, currentVarietal]);
       setCurrentVarietal("");
+    }
+  };
+
+  const onTagKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (currentTag === "") {
+        return;
+      }
+
+      setTags([...tags, currentTag]);
+      form.setFieldValue("tags", [...tags, currentTag]);
+      setCurrentTag("");
     }
   };
 
@@ -50,13 +74,28 @@ export function DetailsTasting() {
     }
 
     setVarietals([...varietals, currentVarietal]);
-    form.setFieldValue("varietal", [...varietals, currentVarietal]);
+    form.setFieldValue("varietals", [...varietals, currentVarietal]);
     setCurrentVarietal("");
+  };
+
+  const onTagBlur = () => {
+    if (currentTag === "") {
+      return;
+    }
+
+    setTags([...tags, currentTag]);
+    form.setFieldValue("tags", [...tags, currentTag]);
+    setCurrentTag("");
   };
 
   const onVarietalChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     setCurrentVarietal(event.currentTarget.value);
+  };
+
+  const onTagChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setCurrentTag(event.currentTarget.value);
   };
 
   return (
@@ -71,11 +110,28 @@ export function DetailsTasting() {
       />
 
       <TextInput
-        data-testid="Name"
+        data-testid="name"
         mt="xs"
         required
         label="Name"
         {...form.getInputProps("name")}
+      />
+
+
+      <TextInput
+        data-testid="region"
+        mt="xs"
+        required
+        label="region"
+        {...form.getInputProps("region")}
+      />
+
+      <TextInput
+        data-testid="purchaseLocation"
+        mt="xs"
+        required
+        label="Purchase Location"
+        {...form.getInputProps("purchaseLocation")}
       />
 
       <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietals")}>
@@ -97,6 +153,29 @@ export function DetailsTasting() {
             onBlur={onVarietalBlur}
             onKeyDown={onVarietalKeyDown}
             onChange={onVarietalChange}
+          />
+        </Pill.Group>
+      </PillsInput>
+
+      <PillsInput data-testid="tags" mt="xs" label="Tag(s)" required {...form.getInputProps("tags")}>
+        <Pill.Group>
+          {tags.map((tag) => (
+            <Pill
+              key={tag}
+              onRemove={() => {
+                handleTagRemove(tag);
+              }}
+              withRemoveButton
+            >
+              {" "}
+              {tag}
+            </Pill>
+          ))}
+          <PillsInput.Field
+            value={currentTag}
+            onBlur={onTagBlur}
+            onKeyDown={onTagKeyDown}
+            onChange={onTagChange}
           />
         </Pill.Group>
       </PillsInput>
