@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer/footer.component";
-import { ColorSmell, DetailsTasting, Review, Taste } from "@/components/form-steps";
+import { DetailsTasting, Review } from "@/components/form-steps";
 import PageContainer from "@/components/page-container/page-container.component";
 import { uploadImage } from "@/database";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
@@ -15,12 +15,6 @@ import { useState } from "react";
 const STEPS = [
   {
     label: "Details",
-  },
-  {
-    label: "Color and Smell",
-  },
-  {
-    label: "Taste",
   },
   {
     label: "Remarks and Review",
@@ -89,10 +83,6 @@ const NewTasting = () => {
       case 0:
         return <DetailsTasting />;
       case 1:
-        return <ColorSmell />;
-      case 2:
-        return <Taste />;
-      case 3:
         return <Review />;
       default:
         break;

@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer/footer.component";
-import { ColorSmell, DetailsTasting, Review, Taste } from "@/components/form-steps";
+import { DetailsTasting, Review } from "@/components/form-steps";
 import PageContainer from "@/components/page-container/page-container.component";
 import { uploadImage } from "@/database";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
@@ -73,12 +73,6 @@ const EditTasting = () => {
         <Box className={styles.form} component="form" onSubmit={form.onSubmit(onSubmitHandler)}>
           <Box className={styles.section}>
             <DetailsTasting />
-          </Box>
-          <Box className={styles.section}>
-            <ColorSmell />
-          </Box>
-          <Box className={styles.section}>
-            <Taste />
           </Box>
           <Box className={styles.section}>
             <Review />

@@ -1,9 +1,8 @@
 import { useFileInput } from "@/hooks/useFileInput";
 import { useTastingContext } from "@/pages/tastings/form-context";
-import { Autocomplete, Box, FileInput, Group, Image, Pill, PillsInput, TextInput, rem } from "@mantine/core";
+import { Box, FileInput, Group, Image, Pill, PillsInput, TextInput, rem } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { IconUpload } from "@tabler/icons-react";
-import { countries } from "countries-list";
 import { type ChangeEvent, type KeyboardEvent, useEffect, useState } from "react";
 
 export function DetailsTasting() {
@@ -12,10 +11,9 @@ export function DetailsTasting() {
   const { file, blob, imgPreview, handleFileChange } = useFileInput();
   const form = useTastingContext();
 
-  const countryList = Object.values(countries).map((country) => country.name);
 
   useEffect(() => {
-    setVarietals(form.values.varietal);
+    setVarietals(form.values.varietals);
     form.setFieldValue("imageBlob", blob);
   }, [blob]);
 
@@ -73,21 +71,14 @@ export function DetailsTasting() {
       />
 
       <TextInput
-        data-testid="producer"
+        data-testid="Name"
         mt="xs"
         required
-        label="Winery / Producer"
-        {...form.getInputProps("producer")}
+        label="Name"
+        {...form.getInputProps("name")}
       />
 
-      <TextInput
-        data-testid="classification"
-        mt="xs"
-        label="Name / Classification"
-        {...form.getInputProps("classification")}
-      />
-
-      <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietal")}>
+      <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietals")}>
         <Pill.Group>
           {varietals.map((varietal) => (
             <Pill
@@ -110,22 +101,6 @@ export function DetailsTasting() {
         </Pill.Group>
       </PillsInput>
 
-      <TextInput data-testid="vintage" required mt="xs" label="Vintage" {...form.getInputProps("vintage")} />
-
-      <Autocomplete
-        data-testid="country"
-        autoComplete="country"
-        data={countryList}
-        required
-        mt="xs"
-        label="Country"
-        {...form.getInputProps("country")}
-      />
-
-      <TextInput data-testid="region" required mt="xs" label="Region" {...form.getInputProps("region")} />
-
-      <TextInput data-testid="subregion" mt="xs" label="Subregion" {...form.getInputProps("subregion")} />
-
       <FileInput
         mt="xs"
         leftSection={<IconUpload style={{ width: rem(18), height: rem(18) }} />}
@@ -136,9 +111,9 @@ export function DetailsTasting() {
         onChange={handleFileChange}
       />
 
-      {(imgPreview || form.values.labelUri) && (
+      {(imgPreview || form.values.imageUrl) && (
         <Group justify="center" mt="md" align="center">
-          <Image radius="md" height={300} src={imgPreview || form.values.labelUri} alt="" />
+          <Image radius="md" height={300} src={imgPreview || form.values.imageUrl} alt="" />
         </Group>
       )}
     </Box>

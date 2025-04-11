@@ -62,8 +62,6 @@ export const createAccountThunk = createAsyncThunk<
       email: request.email,
       displayName: request.displayName,
       avatar: request.avatar,
-      trialExpires: request.trialExpires.toISOString(),
-      isPaid: true,
       authId: request.authId,
     };
 
@@ -102,8 +100,6 @@ export const getAccountByIdThunk = createAsyncThunk<
         authId: account.authId,
         email: account.email,
         planId: account.plan.id,
-        trialExpires: new Date(account.trialExpires),
-        isPaid: account.isPaid,
       } as AccountT;
     }
 
@@ -122,7 +118,7 @@ export const editAccountThunk = createAsyncThunk<
 >("account/editAccount", async (data, { rejectWithValue }) => {
   try {
     const planId = data.planId as unknown;
-    const { id, firstName, lastName, avatar, displayName, authId, email, trialExpires, isPaid } = data;
+    const { id, firstName, lastName, avatar, displayName, authId, email } = data;
     const request: UpdateAccountVariables = {
       firstName,
       lastName,
@@ -131,8 +127,6 @@ export const editAccountThunk = createAsyncThunk<
       displayName,
       authId,
       email,
-      isPaid,
-      trialExpires: trialExpires.toISOString(),
       plan: planId as Plan_Key,
     };
 

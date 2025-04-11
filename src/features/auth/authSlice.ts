@@ -128,15 +128,12 @@ export const fetchSignInWithGoogle = createAsyncThunk<
         authId: account.authId,
         email: account.email,
         planId: account.plan.id,
-        trialExpires: new Date(account.trialExpires),
-        isPaid: account.isPaid,
       } as AccountT;
     }
 
     // Create new account
     const { data } = await createAccount(dc, {
       ...defaultAccount,
-      trialExpires: defaultAccount.trialExpires.toISOString(),
       email: user.email,
     });
 

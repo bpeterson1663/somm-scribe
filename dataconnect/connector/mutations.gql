@@ -45,7 +45,7 @@ mutation CreateTasting($account: Account_Key, $name: String, $region: String, $d
     })
 }
 
-mutation UpdateAccount($id: UUID, $avatar: String, $firstName: String, $lastName: String, $displayName: String, $authId: String, $email: String, $plan: Plan_Key, $trialExpires: Timestamp, $isPaid: Boolean) @auth(level: USER) {
+mutation UpdateAccount($id: UUID, $avatar: String, $firstName: String, $lastName: String, $displayName: String, $authId: String, $email: String, $plan: Plan_Key) @auth(level: USER) {
     account_update(id: $id, data: {
         avatar: $avatar,
         firstName: $firstName,
@@ -54,8 +54,6 @@ mutation UpdateAccount($id: UUID, $avatar: String, $firstName: String, $lastName
         authId: $authId,
         email: $email,
         plan: $plan,
-        trialExpires: $trialExpires,
-        isPaid: $isPaid,
     })
 }
 

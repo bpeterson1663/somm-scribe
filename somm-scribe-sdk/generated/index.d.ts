@@ -27,8 +27,7 @@ export interface CreateAccountVariables {
   authId?: string | null;
   email?: string | null;
   plan?: Plan_Key | null;
-  trialExpires?: TimestampString | null;
-  isPaid?: boolean | null;
+  onboardingComplete?: boolean | null;
 }
 
 export interface CreatePlanResponse {
@@ -53,29 +52,17 @@ export interface CreateTastingResponse {
 
 export interface CreateTastingVariables {
   account?: Account_Key | null;
-  classification?: string | null;
-  country?: string | null;
-  date?: TimestampString | null;
-  description?: string | null;
-  labelUri?: string | null;
-  price?: number | null;
-  producer?: string | null;
-  quantity?: number | null;
+  name?: string | null;
   region?: string | null;
-  subregion?: string | null;
-  varietal?: string[] | null;
-  vintage?: string | null;
-  hue?: string | null;
-  color?: string | null;
-  intensity?: string | null;
-  smell?: string | null;
-  alcohol?: number | null;
-  acidity?: number | null;
-  tannin?: number | null;
-  sweet?: number | null;
-  body?: number | null;
+  date?: TimestampString | null;
+  notes?: string | null;
+  imageUrl?: string | null;
+  tags?: string[] | null;
+  price?: number | null;
+  varietals?: string[] | null;
   rating?: number | null;
-  remarks?: string | null;
+  purchaseLocation?: string | null;
+  wouldBuyAgain?: boolean | null;
 }
 
 export interface DeleteTastingResponse {
@@ -94,11 +81,10 @@ export interface GetAccountByIdResponse {
     displayName?: string | null;
     authId: string;
     email: string;
+    onboardingComplete: boolean;
     plan: {
       id: UUIDString;
     } & Plan_Key;
-      trialExpires: TimestampString;
-      isPaid: boolean;
       id: UUIDString;
   } & Account_Key)[];
 }
@@ -126,29 +112,17 @@ export interface ListTastingsResponse {
   tastings: ({
     id: UUIDString;
     accountId: UUIDString;
-    classification?: string | null;
-    country: string;
-    date: TimestampString;
-    description?: string | null;
-    labelUri?: string | null;
-    price?: number | null;
-    producer: string;
-    quantity?: number | null;
+    name?: string | null;
     region: string;
-    subregion?: string | null;
-    varietal: string[];
-    vintage: string;
-    hue: string;
-    color: string;
-    intensity: string;
-    smell: string;
-    alcohol: number;
-    acidity: number;
-    tannin: number;
-    sweet: number;
-    body: number;
+    date: TimestampString;
+    notes?: string | null;
+    imageUrl?: string | null;
+    tags: string[];
+    varietals: string[];
     rating: number;
-    remarks?: string | null;
+    purchaseLocation?: string | null;
+    price: number;
+    wouldBuyAgain?: boolean | null;
   } & Tasting_Key)[];
 }
 
@@ -159,6 +133,11 @@ export interface ListTastingsVariables {
 export interface Plan_Key {
   id: UUIDString;
   __typename?: 'Plan_Key';
+}
+
+export interface Regions_Key {
+  id: UUIDString;
+  __typename?: 'Regions_Key';
 }
 
 export interface Tasting_Key {
@@ -179,8 +158,6 @@ export interface UpdateAccountVariables {
   authId?: string | null;
   email?: string | null;
   plan?: Plan_Key | null;
-  trialExpires?: TimestampString | null;
-  isPaid?: boolean | null;
 }
 
 export interface UpdateTastingResponse {
@@ -189,29 +166,22 @@ export interface UpdateTastingResponse {
 
 export interface UpdateTastingVariables {
   id?: UUIDString | null;
-  classification?: string | null;
-  country?: string | null;
-  date?: TimestampString | null;
-  description?: string | null;
-  labelUri?: string | null;
-  price?: number | null;
-  producer?: string | null;
-  quantity?: number | null;
+  name?: string | null;
   region?: string | null;
-  subregion?: string | null;
-  varietal?: string[] | null;
-  vintage?: string | null;
-  hue?: string | null;
-  color?: string | null;
-  intensity?: string | null;
-  smell?: string | null;
-  alcohol?: number | null;
-  acidity?: number | null;
-  tannin?: number | null;
-  sweet?: number | null;
-  body?: number | null;
+  date?: TimestampString | null;
+  notes?: string | null;
+  imageUrl?: string | null;
+  tags?: string[] | null;
+  price?: number | null;
+  varietals?: string[] | null;
   rating?: number | null;
-  remarks?: string | null;
+  purchaseLocation?: string | null;
+  wouldBuyAgain?: boolean | null;
+}
+
+export interface Varietals_Key {
+  id: UUIDString;
+  __typename?: 'Varietals_Key';
 }
 
 

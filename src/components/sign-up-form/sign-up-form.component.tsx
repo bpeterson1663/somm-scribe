@@ -9,7 +9,6 @@ import { generateAuthErrorMessage } from "@/helpers";
 import { Box, Button, Group, TextInput } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
-import dayjs from "dayjs";
 import type { AuthError } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -55,10 +54,6 @@ const SignUpForm = () => {
           avatar: "",
           id: "",
           planId: plan?.id ?? "2241b29e996448ee8acd0a3bd84ca27a",
-          trialExpires: dayjs()
-            .add(plan?.trialLength ?? 0, "days")
-            .toDate(),
-          isPaid: false,
         }),
       ).unwrap();
     } catch (err) {

@@ -11,8 +11,6 @@ export const AccountSchema = z.object({
   email: z.string().email({ message: "Not a valid email" }),
   imageBlob: ImageSchema,
   planId: z.string().default(""),
-  trialExpires: z.date().default(new Date()),
-  isPaid: z.boolean().default(false),
 });
 
 export const defaultAccount = {
@@ -25,8 +23,6 @@ export const defaultAccount = {
   email: "",
   imageBlob: null,
   planId: "",
-  trialExpires: new Date(),
-  isPaid: false,
 };
 
 export type AccountT = z.infer<typeof AccountSchema>;
