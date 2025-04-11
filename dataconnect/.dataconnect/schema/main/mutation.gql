@@ -8,9 +8,17 @@ extend type Mutation {
   """
   plan_insert(data: Plan_Data!): Plan_Key!
   """
+  Insert a single Regions into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  regions_insert(data: Regions_Data!): Regions_Key!
+  """
   Insert a single Tasting into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
   """
   tasting_insert(data: Tasting_Data!): Tasting_Key!
+  """
+  Insert a single Varietals into the table. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  varietals_insert(data: Varietals_Data!): Varietals_Key!
   """
   Insert or update a single Account into the table, based on the primary key. Returns the key of the newly inserted Account.
   """
@@ -20,9 +28,17 @@ extend type Mutation {
   """
   plan_upsert(data: Plan_Data!): Plan_Key!
   """
+  Insert or update a single Regions into the table, based on the primary key. Returns the key of the newly inserted Regions.
+  """
+  regions_upsert(data: Regions_Data!): Regions_Key!
+  """
   Insert or update a single Tasting into the table, based on the primary key. Returns the key of the newly inserted Tasting.
   """
   tasting_upsert(data: Tasting_Data!): Tasting_Key!
+  """
+  Insert or update a single Varietals into the table, based on the primary key. Returns the key of the newly inserted Varietals.
+  """
+  varietals_upsert(data: Varietals_Data!): Varietals_Key!
   """
   Update a single Account based on `id` or `key`, setting columns specified in `data`. Returns `null` if not found.
   """
@@ -32,9 +48,17 @@ extend type Mutation {
   """
   plan_update(id: UUID, key: Plan_Key, data: Plan_Data!): Plan_Key
   """
+  Update a single Regions based on `id` or `key`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  regions_update(id: UUID, key: Regions_Key, data: Regions_Data!): Regions_Key
+  """
   Update a single Tasting based on `id` or `key`, setting columns specified in `data`. Returns `null` if not found.
   """
   tasting_update(id: UUID, key: Tasting_Key, data: Tasting_Data!): Tasting_Key
+  """
+  Update a single Varietals based on `id` or `key`, setting columns specified in `data`. Returns `null` if not found.
+  """
+  varietals_update(id: UUID, key: Varietals_Key, data: Varietals_Data!): Varietals_Key
   """
   Update Account entries matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
@@ -44,9 +68,17 @@ extend type Mutation {
   """
   plan_updateMany(where: Plan_Filter, all: Boolean = false, data: Plan_Data!): Int!
   """
+  Update Regions entries matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  regions_updateMany(where: Regions_Filter, all: Boolean = false, data: Regions_Data!): Int!
+  """
   Update Tasting entries matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
   """
   tasting_updateMany(where: Tasting_Filter, all: Boolean = false, data: Tasting_Data!): Int!
+  """
+  Update Varietals entries matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  varietals_updateMany(where: Varietals_Filter, all: Boolean = false, data: Varietals_Data!): Int!
   """
   Delete a single Account based on `id` or `key` and return its key (or `null` if not found).
   """
@@ -56,9 +88,17 @@ extend type Mutation {
   """
   plan_delete(id: UUID, key: Plan_Key): Plan_Key
   """
+  Delete a single Regions based on `id` or `key` and return its key (or `null` if not found).
+  """
+  regions_delete(id: UUID, key: Regions_Key): Regions_Key
+  """
   Delete a single Tasting based on `id` or `key` and return its key (or `null` if not found).
   """
   tasting_delete(id: UUID, key: Tasting_Key): Tasting_Key
+  """
+  Delete a single Varietals based on `id` or `key` and return its key (or `null` if not found).
+  """
+  varietals_delete(id: UUID, key: Varietals_Key): Varietals_Key
   """
   Delete Account entries matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """
@@ -68,7 +108,15 @@ extend type Mutation {
   """
   plan_deleteMany(where: Plan_Filter, all: Boolean = false): Int!
   """
+  Delete Regions entries matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  regions_deleteMany(where: Regions_Filter, all: Boolean = false): Int!
+  """
   Delete Tasting entries matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
   """
   tasting_deleteMany(where: Tasting_Filter, all: Boolean = false): Int!
+  """
+  Delete Varietals entries matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  varietals_deleteMany(where: Varietals_Filter, all: Boolean = false): Int!
 }

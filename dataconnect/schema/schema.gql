@@ -17,34 +17,38 @@ type Account @table {
     displayName: String
     authId: String!
     email: String!
+    onboardingComplete: Boolean!
     plan: Plan!
-    trialExpires: Timestamp!
-    isPaid: Boolean!
 }
 
 type Tasting @table {
     account: Account!
-    classification: String
-    country: String!
-    date: Timestamp!
-    description: String
-    labelUri: String
-    price: Float
-    producer: String!
-    quantity: Int
+    name: String
     region: String!
-    subregion: String
-    varietal: [String!]!
-    vintage: String!
-    hue: String!
-    color: String!
-    intensity: String!
-    smell: String!
-    alcohol: Int!
-    acidity: Int!
-    tannin: Int!
-    sweet: Int!
-    body: Int!
+    date: Timestamp!
+    notes: String
+    imageUrl: String
+    tags: [String]!
+    varietals: [String!]!
     rating: Int!
-    remarks: String
+    purchaseLocation: String
+    price: Float!
+    wouldBuyAgain: Boolean
+}
+
+type Varietals @table {
+    name: String!
+    description: String!
+    characteristics: [String!]!
+    recommendedParings: [String]!
+    color: String!
+    imageUrl: String!
+}
+
+type Regions @table {
+    name: String!
+    description: String!
+    knownFor: [String!]!
+    country: String!
+    imageUrl: String!
 }

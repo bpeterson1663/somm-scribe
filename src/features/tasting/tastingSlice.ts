@@ -1,5 +1,4 @@
 import { dc } from "@/database";
-import type { WineT } from "@/schemas/cellar";
 import type { TastingT } from "@/schemas/tastings";
 import type { FetchStatusT, MessageT } from "@/types";
 import { type PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -21,7 +20,6 @@ interface InitialTastingState {
   status: FetchStatusT;
   tastingList: TastingT[];
   tasting: TastingT | null;
-  tastingOpen: WineT | null;
   publicTastingList: TastingT[];
 }
 const initialState: InitialTastingState = {
@@ -29,7 +27,6 @@ const initialState: InitialTastingState = {
   status: "idle",
   tastingList: [],
   tasting: null,
-  tastingOpen: null,
   publicTastingList: [],
 };
 
@@ -40,24 +37,19 @@ export const tastingSlice = createSlice({
     tastingSetEdit: (state, action: PayloadAction<TastingT>) => {
       state.tasting = action.payload;
     },
-    tastingSetOpen: (state, action: PayloadAction<WineT | null>) => {
-      state.tastingOpen = action.payload;
-    },
   },
   extraReducers(builder) {
     builder
       .addCase(fetchTastingsThunk.fulfilled, (state, action) => {
         const tastingList = action.payload.tastings.map((tasting) => {
-          const quantity = typeof tasting.quantity === "string" ? Number.parseInt(tasting.quantity) : tasting.quantity;
           const price = typeof tasting.price === "string" ? Number.parseFloat(tasting.price) : tasting.price;
 
           const data = {
             ...tasting,
-            quantity: typeof quantity === "number" ? quantity : 0,
             price: typeof price === "number" ? price : 0.0,
             date: new Date(tasting.date),
             labelUri: tasting.labelUri ?? "",
-            description: tasting.description ?? "",
+            name: tasting.name ?? "",
             type: "tasting",
           } as unknown;
 
@@ -82,7 +74,7 @@ export const tastingSlice = createSlice({
   },
 });
 
-export const { tastingSetEdit, tastingSetOpen } = tastingSlice.actions;
+export const { tastingSetEdit } = tastingSlice.actions;
 
 export const tastingListSelector = (state: RootState) => state.tasting;
 
@@ -118,58 +110,22 @@ export const createTastingThunk = createAsyncThunk<
     state: RootState;
   }
 >("tasting/createTasting", async (request, { rejectWithValue }) => {
-  const quantity = typeof request.quantity === "string" ? Number.parseInt(request.quantity) : request.quantity;
   const price = typeof request.price === "string" ? Number.parseFloat(request.price) : request.price;
   try {
     const account = { id: request.accountId } as unknown;
     const {
-      classification,
-      country,
+    
       date,
-      description,
-      labelUri,
-      producer,
       region,
-      subregion,
-      varietal,
-      vintage,
-      hue,
-      color,
-      intensity,
-      smell,
-      alcohol,
-      acidity,
-      tannin,
-      sweet,
-      body,
+
       rating,
-      remarks,
     } = request;
     const tastingData = {
       account: account as Account_Key,
-      classification,
-      country,
       date: date.toISOString(),
-      description,
-      labelUri,
-      producer,
       price,
       region,
-      subregion,
-      varietal,
-      vintage,
-      quantity,
-      hue,
-      color,
-      intensity,
-      smell,
-      alcohol,
-      acidity,
-      tannin,
-      sweet,
-      body,
       rating,
-      remarks,
     };
     const { data } = await createTasting(dc, { ...tastingData });
 
@@ -190,59 +146,20 @@ export const editTastingThunk = createAsyncThunk<
     state: RootState;
   }
 >("tasting/editTasting", async (data, { rejectWithValue }) => {
-  const quantity = typeof data.quantity === "string" ? Number.parseInt(data.quantity) : data.quantity;
   const price = typeof data.price === "string" ? Number.parseFloat(data.price) : data.price;
   const {
     id,
-    classification,
-    country,
     date,
-    description,
-    labelUri,
-    producer,
     region,
-    subregion,
-    varietal,
-    vintage,
-    hue,
-    color,
-    intensity,
-    smell,
-    alcohol,
-    acidity,
-    tannin,
-    sweet,
-    body,
     rating,
-    remarks,
   } = data;
   try {
-    delete data.imageBlob;
     const request: UpdateTastingVariables = {
       id,
-      classification,
-      country,
-      description,
       date: date.toISOString(),
-      labelUri,
-      producer,
       region,
-      subregion,
-      varietal,
-      vintage,
-      quantity,
       price,
-      hue,
-      color,
-      intensity,
-      smell,
-      alcohol,
-      acidity,
-      tannin,
-      sweet,
-      body,
       rating,
-      remarks,
     };
     await updateTasting(request);
     return data;

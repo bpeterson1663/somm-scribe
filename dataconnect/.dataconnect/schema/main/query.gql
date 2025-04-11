@@ -8,9 +8,17 @@ extend type Query {
   """
   plan(id: UUID, key: Plan_Key): Plan
   """
+  Look up a single Regions based on `id` or `key` and return selected fields (or `null` if not found).
+  """
+  regions(id: UUID, key: Regions_Key): Regions
+  """
   Look up a single Tasting based on `id` or `key` and return selected fields (or `null` if not found).
   """
   tasting(id: UUID, key: Tasting_Key): Tasting
+  """
+  Look up a single Varietals based on `id` or `key` and return selected fields (or `null` if not found).
+  """
+  varietals(id: UUID, key: Varietals_Key): Varietals
   """
   List Account entries in the table, optionally filtered by `where` conditions.
   """
@@ -20,7 +28,15 @@ extend type Query {
   """
   plans(where: Plan_Filter, orderBy: [Plan_Order!], limit: Int = 100): [Plan!]!
   """
+  List Regions entries in the table, optionally filtered by `where` conditions.
+  """
+  regionss(where: Regions_Filter, orderBy: [Regions_Order!], limit: Int = 100): [Regions!]!
+  """
   List Tasting entries in the table, optionally filtered by `where` conditions.
   """
   tastings(where: Tasting_Filter, orderBy: [Tasting_Order!], limit: Int = 100): [Tasting!]!
+  """
+  List Varietals entries in the table, optionally filtered by `where` conditions.
+  """
+  varietalss(where: Varietals_Filter, orderBy: [Varietals_Order!], limit: Int = 100): [Varietals!]!
 }

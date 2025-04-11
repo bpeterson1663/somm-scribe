@@ -20,29 +20,17 @@ query ListTastings($accountId: UUID) @auth(level: USER) {
   }) {
     id,
     accountId,
-    classification,
-    country,
-    date,
-    description,
-    labelUri,
-    price,
-    producer,
-    quantity,
+    name,
     region,
-    subregion,
-    varietal,
-    vintage,
-    hue,
-    color,
-    intensity,
-    smell,
-    alcohol,
-    acidity,
-    tannin,
-    sweet,
-    body,
+    date,
+    notes,
+    imageUrl,
+    tags,
+    varietals,
     rating,
-    remarks
+    purchaseLocation,
+    price,
+    wouldBuyAgain,
   }
 }
 
@@ -56,9 +44,8 @@ query GetAccountById($authId: String) @auth(level: USER) {
     displayName,
     authId,
     email,
+    onboardingComplete,
     plan { id },
-    trialExpires,
-    isPaid,
     id
   }
 }

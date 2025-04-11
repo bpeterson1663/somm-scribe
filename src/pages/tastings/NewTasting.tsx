@@ -2,7 +2,6 @@ import { Footer } from "@/components/footer/footer.component";
 import { ColorSmell, DetailsTasting, Review, Taste } from "@/components/form-steps";
 import PageContainer from "@/components/page-container/page-container.component";
 import { uploadImage } from "@/database";
-import { editWineThunk } from "@/features/cellar/cellarSlice";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
 import { createTastingThunk, editTastingThunk } from "@/features/tasting/tastingSlice";
 import styles from "@/pages/styles/pages.module.css";
@@ -30,7 +29,6 @@ const STEPS = [
 
 const NewTasting = () => {
   const dispatch = useAppDispatch();
-  const { tastingOpen } = useAppSelector((state) => state.tasting);
   const { account } = useAppSelector((state) => state.account);
   const [activeStep, setActiveStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +37,6 @@ const NewTasting = () => {
     validateInputOnBlur: true,
     initialValues: {
       ...INITIAL_VALUES,
-      ...tastingOpen,
       accountId: account?.id ?? "",
     },
     validate: zodResolver(TastingSchema),
@@ -48,17 +45,12 @@ const NewTasting = () => {
   const onSubmitHandler = async (data: TastingT) => {
     setIsLoading(true);
     try {
-      if (tastingOpen?.quantity) {
-        const quantity = tastingOpen.quantity > 0 ? tastingOpen.quantity - 1 : 0;
-        dispatch(editWineThunk({ ...tastingOpen, quantity })).unwrap();
-      }
-
       const { id } = await dispatch(createTastingThunk({ ...data, accountId: account?.id ?? "" })).unwrap();
 
       if (data.imageBlob) {
         const { error, photoUrl } = await uploadImage(data.imageBlob, "wine", id);
         if (!error) {
-          await dispatch(editTastingThunk({ ...data, id, labelUri: photoUrl })).unwrap();
+          await dispatch(editTastingThunk({ ...data, id, imageUrl: photoUrl })).unwrap();
         }
       }
 
@@ -108,27 +100,7 @@ const NewTasting = () => {
   };
 
   const disableContinue = (): boolean => {
-    const { errors, isTouched } = form;
-
-    if (activeStep === 0) {
-      if (tastingOpen) {
-        return false;
-      }
-
-      if (
-        !isTouched("producer") ||
-        !isTouched("country") ||
-        !isTouched("region") ||
-        !isTouched("vintage") ||
-        !isTouched("varietal")
-      ) {
-        return true;
-      }
-    } else if (activeStep === 1) {
-      if (!isTouched("smell")) {
-        return true;
-      }
-    }
+    const { errors } = form;
 
     if (Object.keys(errors).length > 0) {
       return true;

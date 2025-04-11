@@ -37,14 +37,14 @@ const EditTasting = () => {
   const onSubmitHandler = async (data: TastingT) => {
     setLoading(true);
     try {
-      let labelUri = data.labelUri;
+      let labelUri = data.imageUrl;
       if (data.imageBlob) {
         const { error, photoUrl } = await uploadImage(data.imageBlob, "wine", data.id);
         if (!error) {
           labelUri = photoUrl;
         }
       }
-      await dispatch(editTastingThunk({ ...data, labelUri })).unwrap();
+      await dispatch(editTastingThunk({ ...data, imageUrl: labelUri })).unwrap();
       form.resetDirty();
       notifications.show({
         message: "Your tasting was updated.",

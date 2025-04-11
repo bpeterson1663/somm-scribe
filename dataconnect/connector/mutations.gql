@@ -13,7 +13,7 @@ mutation CreatePlan($name: String, $price: Float, $maxWine: Int, $maxTasting: In
     })
 }
 
-mutation CreateAccount($avatar: String, $firstName: String, $lastName: String, $displayName: String, $authId: String, $email: String, $plan: Plan_Key, $trialExpires: Timestamp, $isPaid: Boolean) @auth(level: USER) {
+mutation CreateAccount($avatar: String, $firstName: String, $lastName: String, $displayName: String, $authId: String, $email: String, $plan: Plan_Key, $onboardingComplete: Boolean) @auth(level: USER) {
     account_insert(data: {
         avatar: $avatar,
         firstName: $firstName,
@@ -22,38 +22,26 @@ mutation CreateAccount($avatar: String, $firstName: String, $lastName: String, $
         authId: $authId,
         email: $email,
         plan: $plan,
-        trialExpires: $trialExpires,
-        isPaid: $isPaid,
+        onboardingComplete: $onboardingComplete,
     })
 }
 
 
-mutation CreateTasting($account: Account_Key, $classification: String, $country: String, $date: Timestamp, $description: String, $labelUri: String, $price: Float, $producer: String, $quantity: Int, $region: String, $subregion: String, $varietal: [String! ], $vintage: String, $hue: String, $color: String, $intensity: String, $smell: String, $alcohol: Int, $acidity: Int, $tannin: Int, $sweet: Int, $body: Int, $rating: Int, $remarks: String) @auth(level: USER) {
+mutation CreateTasting($account: Account_Key, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean) @auth(level: USER) {
     tasting_insert(data: {
         account: $account,
-        classification: $classification,
-        country: $country,
+        name: $name,
         date: $date,
-        description: $description,
-        labelUri: $labelUri,
+        notes: $notes,
+        imageUrl: $imageUrl,
+        tags: $tags,
+        varietals: $varietals,
         price: $price,
-        producer: $producer,
-        quantity: $quantity,
         region: $region,
-        subregion: $subregion,
-        varietal: $varietal,
-        vintage: $vintage,
-        hue: $hue,
-        color: $color,
-        intensity: $intensity,
-        smell: $smell,
-        alcohol: $alcohol,
-        acidity: $acidity,
-        tannin: $tannin,
-        sweet: $sweet,
-        body: $body,
         rating: $rating,
-        remarks: $remarks
+        purchaseLocation: $purchaseLocation,
+        wouldBuyAgain: $wouldBuyAgain
+
     })
 }
 
@@ -71,31 +59,19 @@ mutation UpdateAccount($id: UUID, $avatar: String, $firstName: String, $lastName
     })
 }
 
-mutation UpdateTasting($id: UUID, $classification: String, $country: String, $date: Timestamp, $description: String, $labelUri: String, $price: Float, $producer: String, $quantity: Int, $region: String, $subregion: String, $varietal: [String! ], $vintage: String,  $hue: String, $color: String, $intensity: String, $smell: String, $alcohol: Int, $acidity: Int, $tannin: Int, $sweet: Int, $body: Int, $rating: Int, $remarks: String) @auth(level: USER) {
+mutation UpdateTasting($id: UUID, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean) @auth(level: USER) {
   tasting_update(id: $id, data: {
-        classification: $classification,
-        country: $country,
+        name: $name,
         date: $date,
-        description: $description,
-        labelUri: $labelUri,
+        notes: $notes,
+        imageUrl: $imageUrl,
+        tags: $tags,
+        varietals: $varietals,
         price: $price,
-        producer: $producer,
-        quantity: $quantity,
         region: $region,
-        subregion: $subregion,
-        varietal: $varietal,
-        vintage: $vintage,
-        hue: $hue,
-        color: $color,
-        intensity: $intensity,
-        smell: $smell,
-        alcohol: $alcohol,
-        acidity: $acidity,
-        tannin: $tannin,
-        sweet: $sweet,
-        body: $body,
         rating: $rating,
-        remarks: $remarks
+        purchaseLocation: $purchaseLocation,
+        wouldBuyAgain: $wouldBuyAgain
     })
 }
 

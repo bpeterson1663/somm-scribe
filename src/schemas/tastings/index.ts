@@ -1,65 +1,38 @@
-import { WineSchema } from "@/schemas/cellar";
 import { z } from "zod";
+import { ImageSchema } from "../image";
 
-export const RedHueSchema = z.enum(["purple", "ruby", "garnet", "tawny", "brown"]);
-export type RedHueT = z.infer<typeof RedHueSchema>;
+export const TastingSchema = z.object({
+  id: z.string().default(""),
+  accountId: z.string().default(""),
+  name: z.string().default(""),
+  region: z.string().default(""),
+  date: z.date().default(new Date()),
+  notes: z.string().default(""),
+  imageUrl: z.string().default(""),
+  imageBlob: ImageSchema,
+  tags: z.array(z.string()).default([]),
+  varietals: z.array(z.string()).default([]),
+  rating: z.number().default(0),
+  purchaseLocation: z.string().default(""),
+  price: z.number().default(0),
+  wouldBuyAgain: z.boolean().default(false)
 
-export const WhiteHueSchema = z.enum(["straw", "yellow", "gold", "amber", "brown"]);
-export type WhiteHueT = z.infer<typeof WhiteHueSchema>;
-
-export const RoseHueSchema = z.enum(["pink", "salmon", "copper"]);
-export type RoseHueT = z.infer<typeof RoseHueSchema>;
-
-export const HueSchema = z.enum([...RedHueSchema.options, ...WhiteHueSchema.options, ...RoseHueSchema.options]);
-
-export const ColorSchema = z.enum(["red", "white", "rose"]);
-export type ColorT = z.infer<typeof ColorSchema>;
-
-export const IntesnitySchema = z.enum(["pale", "medium", "deep"]);
-export type IntensityT = z.infer<typeof IntesnitySchema>;
-
-export const TastingSchema = WineSchema.extend({
-  hue: HueSchema,
-  color: ColorSchema,
-  intensity: IntesnitySchema,
-  smell: z.string().min(1, { message: "Describe how the wine smells" }),
-  alcohol: z.number().min(1).max(5).default(1),
-  acidity: z.number().min(1).max(5).default(1),
-  tannin: z.number().min(1).max(5).default(1),
-  sweet: z.number().min(1).max(5).default(1),
-  body: z.number().min(1).max(5).default(1),
-  rating: z.number().min(1).max(5).default(3),
-  remarks: z.string().default(""),
 });
 
 export type TastingT = z.infer<typeof TastingSchema>;
 
 export const INITIAL_VALUES: TastingT = {
   id: "",
-  type: "tasting",
   accountId: "",
-  producer: "",
-  classification: "",
-  subregion: "",
+  name: "",
   region: "",
-  country: "",
-  vintage: "",
-  quantity: 0,
   price: 0,
-  description: "",
-  labelUri: "",
-  varietal: [],
+  imageUrl: "",
+  varietals: [],
   date: new Date(),
-  hue: "purple",
-  color: "red",
-  intensity: "pale",
-  smell: "",
-  alcohol: 1,
-  acidity: 1,
-  tannin: 1,
-  sweet: 1,
-  body: 1,
-  rating: 3,
-  remarks: "",
-  imageBlob: null,
+  rating: 0,
+  notes: "",
+  tags: [],
+  wouldBuyAgain: false,
+  purchaseLocation: ""
 };

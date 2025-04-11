@@ -5,7 +5,13 @@ extend type Account {
 extend type Plan {
   id: UUID! @default(expr: "uuidV4()")
 }
+extend type Regions {
+  id: UUID! @default(expr: "uuidV4()")
+}
 extend type Tasting {
   id: UUID! @default(expr: "uuidV4()")
   accountId: UUID!
+}
+extend type Varietals {
+  id: UUID! @default(expr: "uuidV4()")
 }

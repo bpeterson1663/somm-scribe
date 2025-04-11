@@ -1,15 +1,11 @@
 import redWine from "@/assets/images/wine/red-wine.jpeg";
-import roseWine from "@/assets/images/wine/rose-wine.jpeg";
-import whiteWine from "@/assets/images/wine/white-wine.jpeg";
+
 import {
   ALCOHOL_MARKS,
   BODY_MARKS,
   SWEET_MARKS,
   TANNIN_ACIDITY_MARKS,
 } from "@/components/form-steps/form-tasting.constants";
-import type { WineT } from "@/schemas/cellar";
-import type { TastingT } from "@/schemas/tastings";
-import { isTastingT } from "@/schemas/utils";
 import type { AuthError } from "firebase/auth";
 
 export const getLabel = (type: "BODY" | "TANNIN" | "ACIDITY" | "ALCOHOL" | "SWEET", value: number) => {
@@ -56,20 +52,6 @@ export const generateAuthErrorMessage = (err: AuthError): string => {
   }
 };
 
-export function getWineImage(wine: WineT | TastingT) {
-  if (isTastingT(wine)) {
-    const { color } = wine;
-    switch (color) {
-      case "red":
-        return redWine;
-      case "white":
-        return whiteWine;
-      case "rose":
-        return roseWine;
-      default:
-        return redWine;
-    }
-  }
-
-  return redWine;
+export function getDefaultWineImage() {
+  return redWine
 }
