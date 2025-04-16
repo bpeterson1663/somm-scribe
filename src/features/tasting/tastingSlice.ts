@@ -137,7 +137,7 @@ export const createTastingThunk = createAsyncThunk<
       price,
       region,
       rating,
-      createdAt,
+      createdAt: createdAt.toISOString(),
     };
     const { data } = await createTasting(dc, { ...tastingData });
 
@@ -173,7 +173,7 @@ export const editTastingThunk = createAsyncThunk<
       region,
       price,
       rating,
-      updatedAt,
+      updatedAt: updatedAt.toISOString(),
     };
     await updateTasting(request);
     return data;
