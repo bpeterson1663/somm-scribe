@@ -140,6 +140,9 @@ input Tasting_Data {
   accountId: UUID
   accountId_expr: UUID_Expr
   account: Account_Key
+  createdAt: Timestamp
+  createdAt_expr: Timestamp_Expr
+  createdAt_time: Timestamp_Relative
   date: Timestamp
   date_expr: Timestamp_Expr
   date_time: Timestamp_Relative
@@ -156,6 +159,9 @@ input Tasting_Data {
   region: String
   region_expr: String_Expr
   tags: [String!]
+  updatedAt: Timestamp
+  updatedAt_expr: Timestamp_Expr
+  updatedAt_time: Timestamp_Relative
   varietals: [String!]
   wouldBuyAgain: Boolean
 }
@@ -166,6 +172,7 @@ input Tasting_Filter {
   id: UUID_Filter
   accountId: UUID_Filter
   account: Account_Filter
+  createdAt: Timestamp_Filter
   date: Timestamp_Filter
   imageUrl: String_Filter
   name: String_Filter
@@ -175,6 +182,7 @@ input Tasting_Filter {
   rating: Int_Filter
   region: String_Filter
   tags: String_ListFilter
+  updatedAt: Timestamp_Filter
   varietals: String_ListFilter
   wouldBuyAgain: Boolean_Filter
 }
@@ -185,6 +193,7 @@ input Tasting_ListFilter {
 input Tasting_Order {
   id: OrderDirection
   accountId: OrderDirection
+  createdAt: OrderDirection
   date: OrderDirection
   imageUrl: OrderDirection
   name: OrderDirection
@@ -193,6 +202,7 @@ input Tasting_Order {
   purchaseLocation: OrderDirection
   rating: OrderDirection
   region: OrderDirection
+  updatedAt: OrderDirection
   wouldBuyAgain: OrderDirection
 }
 input Varietals_Data {

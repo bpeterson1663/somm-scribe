@@ -6,6 +6,27 @@ export const connectorConfig = {
   location: 'us-central1'
 };
 
+export function listPlansRef(dc) {
+  const { dc: dcInstance} = validateArgs(dc, undefined);
+  return queryRef(dcInstance, 'ListPlans');
+}
+export function listPlans(dc) {
+  return executeQuery(listPlansRef(dc));
+}
+export function listTastingsRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
+  return queryRef(dcInstance, 'ListTastings', inputVars);
+}
+export function listTastings(dcOrVars, vars) {
+  return executeQuery(listTastingsRef(dcOrVars, vars));
+}
+export function getAccountByIdRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
+  return queryRef(dcInstance, 'GetAccountById', inputVars);
+}
+export function getAccountById(dcOrVars, vars) {
+  return executeQuery(getAccountByIdRef(dcOrVars, vars));
+}
 export function createPlanRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
   return mutationRef(dcInstance, 'CreatePlan', inputVars);
@@ -47,27 +68,6 @@ export function deleteTastingRef(dcOrVars, vars) {
 }
 export function deleteTasting(dcOrVars, vars) {
   return executeMutation(deleteTastingRef(dcOrVars, vars));
-}
-export function listPlansRef(dc) {
-  const { dc: dcInstance} = validateArgs(dc, undefined);
-  return queryRef(dcInstance, 'ListPlans');
-}
-export function listPlans(dc) {
-  return executeQuery(listPlansRef(dc));
-}
-export function listTastingsRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return queryRef(dcInstance, 'ListTastings', inputVars);
-}
-export function listTastings(dcOrVars, vars) {
-  return executeQuery(listTastingsRef(dcOrVars, vars));
-}
-export function getAccountByIdRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return queryRef(dcInstance, 'GetAccountById', inputVars);
-}
-export function getAccountById(dcOrVars, vars) {
-  return executeQuery(getAccountByIdRef(dcOrVars, vars));
 }
 function validateArgs(dcOrVars, vars, validateVars) {
   let dcInstance;

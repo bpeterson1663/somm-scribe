@@ -26,8 +26,7 @@ mutation CreateAccount($avatar: String, $firstName: String, $lastName: String, $
     })
 }
 
-
-mutation CreateTasting($account: Account_Key, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean) @auth(level: USER) {
+mutation CreateTasting($account: Account_Key, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean, $createdAt: Timestamp) @auth(level: USER) {
     tasting_insert(data: {
         account: $account,
         name: $name,
@@ -40,8 +39,9 @@ mutation CreateTasting($account: Account_Key, $name: String, $region: String, $d
         region: $region,
         rating: $rating,
         purchaseLocation: $purchaseLocation,
-        wouldBuyAgain: $wouldBuyAgain
-
+        wouldBuyAgain: $wouldBuyAgain,
+        createdAt: $createdAt,
+        updatedAt: $createdAt
     })
 }
 
@@ -57,7 +57,7 @@ mutation UpdateAccount($id: UUID, $avatar: String, $firstName: String, $lastName
     })
 }
 
-mutation UpdateTasting($id: UUID, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean) @auth(level: USER) {
+mutation UpdateTasting($id: UUID, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean, $updatedAt: Timestamp) @auth(level: USER) {
   tasting_update(id: $id, data: {
         name: $name,
         date: $date,
@@ -69,7 +69,8 @@ mutation UpdateTasting($id: UUID, $name: String, $region: String, $date: Timesta
         region: $region,
         rating: $rating,
         purchaseLocation: $purchaseLocation,
-        wouldBuyAgain: $wouldBuyAgain
+        wouldBuyAgain: $wouldBuyAgain,
+        updatedAt: $updatedAt,
     })
 }
 

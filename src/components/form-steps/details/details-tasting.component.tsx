@@ -122,7 +122,7 @@ export function DetailsTasting() {
         data-testid="region"
         mt="xs"
         required
-        label="region"
+        label="Region"
         {...form.getInputProps("region")}
       />
 

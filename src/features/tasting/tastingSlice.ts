@@ -6,6 +6,7 @@ import type { RootState } from "../store";
 
 import {
   type Account_Key,
+  CreateTastingVariables,
   type DeleteTastingVariables,
   type ListTastingsResponse,
   type ListTastingsVariables,
@@ -123,7 +124,10 @@ export const createTastingThunk = createAsyncThunk<
 
       rating,
     } = request;
-    const tastingData = {
+
+    const createdAt = new Date();
+
+    const tastingData: CreateTastingVariables = {
       name,
       tags,
       notes,
@@ -133,6 +137,7 @@ export const createTastingThunk = createAsyncThunk<
       price,
       region,
       rating,
+      createdAt,
     };
     const { data } = await createTasting(dc, { ...tastingData });
 
@@ -161,12 +166,14 @@ export const editTastingThunk = createAsyncThunk<
     rating,
   } = data;
   try {
+    const updatedAt = new Date();
     const request: UpdateTastingVariables = {
       id,
       date: date.toISOString(),
       region,
       price,
       rating,
+      updatedAt,
     };
     await updateTasting(request);
     return data;
