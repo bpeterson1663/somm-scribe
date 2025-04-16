@@ -3,8 +3,8 @@ import type { RootState } from "@/features/store";
 import { type AccountT, defaultAccount } from "@/schemas/account";
 import type { FetchStatusT, MessageT } from "@/types";
 import {
+  CreateAccountVariables,
   type GetAccountByIdVariables,
-  type Plan_Key,
   type UpdateAccountVariables,
   createAccount,
   getAccountById,
@@ -53,24 +53,32 @@ export const createAccountThunk = createAsyncThunk<
     state: RootState;
   }
 >("account/createAccount", async (request, { rejectWithValue }) => {
+debugger;  
   try {
-    const plan = request.planId as unknown;
-    const account = {
-      name: request.name,
-      plan: plan as Plan_Key,
-      email: request.email,
-      authId: request.authId,
+    const { name, planId, email, authId, onboardingComplete } = request
+    const createdAt = new Date().toISOString();
+    const account: CreateAccountVariables = {
+      name,
+      plan: {
+        id: planId
+      },
+      email,
+      authId,
+      onboardingComplete,
+      createdAt,
+      updatedAt: createdAt,
     };
 
     const { data } = await createAccount(dc, account);
-
-    const response = {
+    debugger
+    const response: AccountT = {
       ...request,
       id: data.account_insert.id,
     };
 
-    return response as AccountT;
+    return response;
   } catch (err) {
+    console.error(err)
     return rejectWithValue(err);
   }
 });
@@ -94,11 +102,13 @@ export const getAccountByIdThunk = createAsyncThunk<
         authId: account.authId,
         email: account.email,
         planId: account.plan.id,
+        onboardingComplete: account.onboardingComplete
       } as AccountT;
     }
 
     return defaultAccount;
   } catch (err) {
+    console.error(err)
     return rejectWithValue(err);
   }
 });
@@ -111,14 +121,18 @@ export const editAccountThunk = createAsyncThunk<
   }
 >("account/editAccount", async (data, { rejectWithValue }) => {
   try {
-    const planId = data.planId as unknown;
-    const { id, name, authId, email } = data;
+    const { id, name, authId, email, onboardingComplete } = data;
+    
     const request: UpdateAccountVariables = {
       name,
       id,
       authId,
       email,
-      plan: planId as Plan_Key,
+      plan: {
+        id: data.planId
+      },
+      onboardingComplete,
+      updatedAt: new Date().toISOString()
     };
 
     await updateAccount(request);

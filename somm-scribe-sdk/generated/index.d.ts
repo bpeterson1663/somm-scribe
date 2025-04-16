@@ -25,6 +25,8 @@ export interface CreateAccountVariables {
   email?: string | null;
   plan?: Plan_Key | null;
   onboardingComplete?: boolean | null;
+  createdAt?: TimestampString | null;
+  updatedAt?: TimestampString | null;
 }
 
 export interface CreatePlanResponse {
@@ -150,6 +152,8 @@ export interface UpdateAccountVariables {
   authId?: string | null;
   email?: string | null;
   plan?: Plan_Key | null;
+  onboardingComplete?: boolean | null;
+  updatedAt?: TimestampString | null;
 }
 
 export interface UpdateTastingResponse {

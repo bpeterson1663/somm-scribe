@@ -6,6 +6,7 @@ export const AccountSchema = z.object({
   authId: z.string().default(""),
   email: z.string().email({ message: "Not a valid email" }),
   planId: z.string().default(""),
+  onboardingComplete: z.boolean().default(false)
 });
 
 export const defaultAccount = {
@@ -14,6 +15,7 @@ export const defaultAccount = {
   authId: "",
   email: "",
   planId: "",
+  onboardingComplete: false
 };
 
 export type AccountT = z.infer<typeof AccountSchema>;

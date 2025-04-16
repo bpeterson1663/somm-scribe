@@ -50,9 +50,11 @@ const SignUpForm = () => {
           email,
           id: "",
           planId: plan?.id ?? "2241b29e996448ee8acd0a3bd84ca27a",
+          onboardingComplete: false,
         }),
       ).unwrap();
     } catch (err) {
+      console.error(err)
       notifications.show({
         color: "red",
         message: generateAuthErrorMessage(err as AuthError),
@@ -64,7 +66,6 @@ const SignUpForm = () => {
 
   const handleSignUpWithGoogle = async () => {
     setGoogleLoading(true);
-    debugger;
     try {
       await dispatch(fetchSignInWithGoogle(null)).unwrap();
     } catch (err) {

@@ -13,13 +13,15 @@ mutation CreatePlan($name: String, $price: Float, $maxWine: Int, $maxTasting: In
     })
 }
 
-mutation CreateAccount($name: String, $authId: String, $email: String, $plan: Plan_Key, $onboardingComplete: Boolean) @auth(level: USER) {
+mutation CreateAccount($name: String, $authId: String, $email: String, $plan: Plan_Key, $onboardingComplete: Boolean, $createdAt: Timestamp, $updatedAt: Timestamp) @auth(level: USER) {
     account_insert(data: {
         name: $name,
         authId: $authId,
         email: $email,
         plan: $plan,
         onboardingComplete: $onboardingComplete,
+        createdAt: $createdAt,
+        updatedAt: $updatedAt,
     })
 }
 
@@ -42,12 +44,14 @@ mutation CreateTasting($account: Account_Key, $name: String, $region: String, $d
     })
 }
 
-mutation UpdateAccount($id: UUID, $name: String, $authId: String, $email: String, $plan: Plan_Key) @auth(level: USER) {
+mutation UpdateAccount($id: UUID, $name: String, $authId: String, $email: String, $plan: Plan_Key, $onboardingComplete: Boolean, $updatedAt: Timestamp) @auth(level: USER) {
     account_update(id: $id, data: {
         name: $name,
         authId: $authId,
         email: $email,
         plan: $plan,
+        onboardingComplete: $onboardingComplete,
+        updatedAt: $updatedAt
     })
 }
 

@@ -121,7 +121,6 @@ export const createTastingThunk = createAsyncThunk<
       notes,
       date,
       region,
-
       rating,
     } = request;
 
