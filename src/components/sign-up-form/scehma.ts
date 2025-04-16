@@ -1,8 +1,7 @@
 import { z } from "zod";
 export const Schema = z
   .object({
-    firstName: z.string().min(1, { message: "Enter your first name" }),
-    lastName: z.string().min(1, { message: "Enter your last name" }),
+    name: z.string().min(1, { message: "Enter your name" }),
     email: z.string().email({ message: "Not a valid email" }),
     password: z
       .string()

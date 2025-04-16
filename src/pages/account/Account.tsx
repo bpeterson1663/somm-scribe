@@ -1,35 +1,27 @@
 import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
-import { removeImage, uploadImage } from "@/database";
 import { editAccountThunk } from "@/features/account/accountSlice";
 import { fetchLogout } from "@/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
-import { useFileInput } from "@/hooks/useFileInput";
-import { useMobile } from "@/hooks/useMobile";
-import styles from "@/pages/styles/pages.module.css";
 import {
-  ActionIcon,
-  Avatar,
+
   Badge,
   Box,
   Button,
   Card,
-  FileInput,
   Group,
   List,
   Text,
   TextInput,
   Title,
-  rem,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
-import { IconTrash, IconUpload } from "@tabler/icons-react";
 
 import { selectUserPlan } from "@/features/plan/planSelector";
 import { AccountSchema, type AccountT, defaultAccount } from "@/schemas/account";
 import type { PlanT } from "@/schemas/plans";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Account() {
@@ -37,8 +29,6 @@ export default function Account() {
   const navigate = useNavigate();
   const { currentUser } = useAppSelector((state) => state.auth);
   const { account } = useAppSelector((state) => state.account);
-  const isMobile = useMobile();
-  const { file, blob, handleFileChange, imgPreview } = useFileInput();
   const [loading, setLoading] = useState(false);
   const { planList } = useAppSelector((state) => state.plan);
   const currentPlan = useAppSelector(selectUserPlan);
@@ -56,12 +46,6 @@ export default function Account() {
     validate: zodResolver(AccountSchema),
   });
 
-  const formRef = useRef(form);
-
-  useEffect(() => {
-    formRef.current.setFieldValue("imageBlob", blob);
-  }, [blob]);
-
   const handleLogout = async () => {
     await dispatch(fetchLogout(null));
     if (!currentUser) {
@@ -69,36 +53,11 @@ export default function Account() {
     }
   };
 
-  const handleDeleteAvatar = async () => {
-    setLoading(true);
-    try {
-      await removeImage(form.values.avatar);
-      await dispatch(editAccountThunk({ ...form.values, avatar: "" })).unwrap();
-      notifications.show({
-        message: "Your avatar image has been removed.",
-      });
-    } catch (err: any) {
-      notifications.show({
-        message: "An error occurred removing your avatar.",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const onSubmitHandler = async (data: AccountT) => {
     setLoading(true);
 
     try {
-      let avatar = data.avatar;
-      if (data.imageBlob) {
-        const { error, photoUrl } = await uploadImage(data.imageBlob, "account", currentUser?.uid ?? "");
-        if (!error) {
-          avatar = photoUrl;
-        }
-      }
-
-      await dispatch(editAccountThunk({ ...data, avatar }));
+      await dispatch(editAccountThunk({ ...data }));
       notifications.show({
         message: "Your profile was saved.",
       });
@@ -157,19 +116,8 @@ export default function Account() {
       <Group justify="space-between" pl={10}>
         <Box w={400}>
           <form onSubmit={form.onSubmit(onSubmitHandler)}>
-            <TextInput required mt="xs" type="firstName" label="First Name" {...form.getInputProps("firstName")} />
-            <TextInput required mt="xs" type="lastName" label="Last Name" {...form.getInputProps("lastName")} />
+            <TextInput required mt="xs" type="name" label="Name" {...form.getInputProps("name")} />
             <TextInput mt="xs" type="email" label="Email" disabled {...form.getInputProps("email")} />
-            <TextInput mt="xs" type="displayName" label="Display Name" {...form.getInputProps("displayName")} />
-            <FileInput
-              {...form.getInputProps("imageBlob")}
-              mt="xs"
-              leftSection={<IconUpload style={{ width: rem(18), height: rem(18) }} />}
-              label="Avatar"
-              placeholder="Upload avatar"
-              value={file}
-              onChange={handleFileChange}
-            />
             <Footer>
               <Group style={{ width: "100%" }} justify="space-between">
                 <Button onClick={handleLogout}>Sign Out</Button>
@@ -179,25 +127,6 @@ export default function Account() {
               </Group>
             </Footer>
           </form>
-        </Box>
-        <Box mr="auto" ml="auto">
-          <Avatar
-            color="white"
-            className={styles.avatar}
-            radius="lg"
-            size={isMobile ? 200 : 300}
-            src={imgPreview || account?.avatar}
-          />
-          <ActionIcon
-            variant="filled"
-            mt={10}
-            size={36}
-            loading={loading}
-            disabled={!form.values.avatar}
-            onClick={handleDeleteAvatar}
-          >
-            <IconTrash />
-          </ActionIcon>
         </Box>
       </Group>
       <Group mt="30">

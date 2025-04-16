@@ -38,10 +38,7 @@ query GetAccountById($authId: String) @auth(level: USER) {
   accounts(where: {
     authId: {eq: $authId }
   }) {
-    firstName,
-    lastName,
-    avatar,
-    displayName,
+    name,
     authId,
     email,
     onboardingComplete,

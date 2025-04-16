@@ -56,12 +56,9 @@ export const createAccountThunk = createAsyncThunk<
   try {
     const plan = request.planId as unknown;
     const account = {
-      firstName: request.firstName,
-      lastName: request.lastName,
+      name: request.name,
       plan: plan as Plan_Key,
       email: request.email,
-      displayName: request.displayName,
-      avatar: request.avatar,
       authId: request.authId,
     };
 
@@ -93,10 +90,7 @@ export const getAccountByIdThunk = createAsyncThunk<
       const account = data.accounts[0];
       return {
         id: account.id,
-        firstName: account.firstName,
-        lastName: account.lastName,
-        avatar: account.avatar,
-        displayName: account.displayName,
+        name: account.name,
         authId: account.authId,
         email: account.email,
         planId: account.plan.id,
@@ -118,13 +112,10 @@ export const editAccountThunk = createAsyncThunk<
 >("account/editAccount", async (data, { rejectWithValue }) => {
   try {
     const planId = data.planId as unknown;
-    const { id, firstName, lastName, avatar, displayName, authId, email } = data;
+    const { id, name, authId, email } = data;
     const request: UpdateAccountVariables = {
-      firstName,
-      lastName,
+      name,
       id,
-      avatar,
-      displayName,
       authId,
       email,
       plan: planId as Plan_Key,

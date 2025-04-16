@@ -11,17 +11,17 @@ input Account_Data {
   plan: Plan_Key
   authId: String
   authId_expr: String_Expr
-  avatar: String
-  avatar_expr: String_Expr
-  displayName: String
-  displayName_expr: String_Expr
+  createdAt: Timestamp
+  createdAt_expr: Timestamp_Expr
+  createdAt_time: Timestamp_Relative
   email: String
   email_expr: String_Expr
-  firstName: String
-  firstName_expr: String_Expr
-  lastName: String
-  lastName_expr: String_Expr
+  name: String
+  name_expr: String_Expr
   onboardingComplete: Boolean
+  updatedAt: Timestamp
+  updatedAt_expr: Timestamp_Expr
+  updatedAt_time: Timestamp_Relative
 }
 input Account_Filter {
   _and: [Account_Filter!]
@@ -31,12 +31,11 @@ input Account_Filter {
   planId: UUID_Filter
   plan: Plan_Filter
   authId: String_Filter
-  avatar: String_Filter
-  displayName: String_Filter
+  createdAt: Timestamp_Filter
   email: String_Filter
-  firstName: String_Filter
-  lastName: String_Filter
+  name: String_Filter
   onboardingComplete: Boolean_Filter
+  updatedAt: Timestamp_Filter
   tastings_on_account: Tasting_ListFilter
 }
 input Account_ListFilter {
@@ -47,12 +46,11 @@ input Account_Order {
   id: OrderDirection
   planId: OrderDirection
   authId: OrderDirection
-  avatar: OrderDirection
-  displayName: OrderDirection
+  createdAt: OrderDirection
   email: OrderDirection
-  firstName: OrderDirection
-  lastName: OrderDirection
+  name: OrderDirection
   onboardingComplete: OrderDirection
+  updatedAt: OrderDirection
 }
 input Plan_Data {
   id: UUID

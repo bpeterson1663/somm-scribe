@@ -7,33 +7,6 @@ const connectorConfig = {
 };
 exports.connectorConfig = connectorConfig;
 
-function listPlansRef(dc) {
-  const { dc: dcInstance} = validateArgs(dc, undefined);
-  return queryRef(dcInstance, 'ListPlans');
-}
-exports.listPlansRef = listPlansRef;
-exports.listPlans = function listPlans(dc) {
-  return executeQuery(listPlansRef(dc));
-};
-
-function listTastingsRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return queryRef(dcInstance, 'ListTastings', inputVars);
-}
-exports.listTastingsRef = listTastingsRef;
-exports.listTastings = function listTastings(dcOrVars, vars) {
-  return executeQuery(listTastingsRef(dcOrVars, vars));
-};
-
-function getAccountByIdRef(dcOrVars, vars) {
-  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
-  return queryRef(dcInstance, 'GetAccountById', inputVars);
-}
-exports.getAccountByIdRef = getAccountByIdRef;
-exports.getAccountById = function getAccountById(dcOrVars, vars) {
-  return executeQuery(getAccountByIdRef(dcOrVars, vars));
-};
-
 function createPlanRef(dcOrVars, vars) {
   const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
   return mutationRef(dcInstance, 'CreatePlan', inputVars);
@@ -86,6 +59,33 @@ function deleteTastingRef(dcOrVars, vars) {
 exports.deleteTastingRef = deleteTastingRef;
 exports.deleteTasting = function deleteTasting(dcOrVars, vars) {
   return executeMutation(deleteTastingRef(dcOrVars, vars));
+};
+
+function listPlansRef(dc) {
+  const { dc: dcInstance} = validateArgs(dc, undefined);
+  return queryRef(dcInstance, 'ListPlans');
+}
+exports.listPlansRef = listPlansRef;
+exports.listPlans = function listPlans(dc) {
+  return executeQuery(listPlansRef(dc));
+};
+
+function listTastingsRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
+  return queryRef(dcInstance, 'ListTastings', inputVars);
+}
+exports.listTastingsRef = listTastingsRef;
+exports.listTastings = function listTastings(dcOrVars, vars) {
+  return executeQuery(listTastingsRef(dcOrVars, vars));
+};
+
+function getAccountByIdRef(dcOrVars, vars) {
+  const { dc: dcInstance, vars: inputVars} = validateArgs(dcOrVars, vars);
+  return queryRef(dcInstance, 'GetAccountById', inputVars);
+}
+exports.getAccountByIdRef = getAccountByIdRef;
+exports.getAccountById = function getAccountById(dcOrVars, vars) {
+  return executeQuery(getAccountByIdRef(dcOrVars, vars));
 };
 
 function validateArgs(dcOrVars, vars, validateVars) {

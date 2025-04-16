@@ -29,8 +29,7 @@ const SignUpForm = () => {
 
   const form = useForm({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -41,17 +40,14 @@ const SignUpForm = () => {
 
   const onSubmitHandler = async (data: SignUpFormT) => {
     setLoading(true);
-    const { password, email, firstName, lastName } = data;
+    const { password, email, name } = data;
     try {
-      const { uid } = await dispatch(fetchSignUp({ email, password, firstName, lastName })).unwrap();
+      const { uid } = await dispatch(fetchSignUp({ email, password, name })).unwrap();
       await dispatch(
         createAccountThunk({
-          firstName,
-          lastName,
+          name,
           authId: uid,
           email,
-          displayName: "",
-          avatar: "",
           id: "",
           planId: plan?.id ?? "2241b29e996448ee8acd0a3bd84ca27a",
         }),
@@ -68,6 +64,7 @@ const SignUpForm = () => {
 
   const handleSignUpWithGoogle = async () => {
     setGoogleLoading(true);
+    debugger;
     try {
       await dispatch(fetchSignInWithGoogle(null)).unwrap();
     } catch (err) {
@@ -83,9 +80,7 @@ const SignUpForm = () => {
   return (
     <Box className={styles.container}>
       <form onSubmit={form.onSubmit(onSubmitHandler)}>
-        <TextInput withAsterisk label="First Name" type="text" {...form.getInputProps("firstName")} />
-
-        <TextInput withAsterisk label="Last Name" type="text" {...form.getInputProps("lastName")} />
+        <TextInput withAsterisk label="Name" type="text" {...form.getInputProps("name")} />
 
         <TextInput withAsterisk label="Email" type="email" {...form.getInputProps("email")} />
 

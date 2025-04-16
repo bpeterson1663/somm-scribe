@@ -11,8 +11,7 @@ export interface AccountT {
 export interface UserT {
   _id: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  name: string;
 }
 
 export interface AuthUserT {

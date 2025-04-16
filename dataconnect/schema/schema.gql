@@ -11,14 +11,13 @@ type Plan @table {
 }
 
 type Account @table {
-    firstName: String!
-    lastName: String!
-    avatar: String
-    displayName: String
+    name: String
     authId: String!
     email: String!
     onboardingComplete: Boolean!
     plan: Plan!
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
 }
 
 type Tasting @table {

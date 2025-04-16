@@ -32,7 +32,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
             uid,
             email,
           });
-          if (!account?.firstName) {
+          if (!account?.name) {
             await dispatch(getAccountByIdThunk(uid));
           }
           setLoading(false);

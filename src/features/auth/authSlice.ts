@@ -121,10 +121,7 @@ export const fetchSignInWithGoogle = createAsyncThunk<
       const account = responseById.data.accounts[0];
       return {
         id: account.id,
-        firstName: account.firstName,
-        lastName: account.lastName,
-        avatar: account.avatar,
-        displayName: account.displayName,
+        name: account.name,
         authId: account.authId,
         email: account.email,
         planId: account.plan.id,

@@ -13,9 +13,7 @@ const NavBar = () => {
   const { account } = useAppSelector((state) => state.account);
 
   function getInitials() {
-    const first = account?.firstName[0] ?? "";
-    const last = account?.lastName[0] ?? "";
-    return `${first}${last}`;
+    return account?.name[0] ?? "";
   }
 
   function renderNavItems() {
@@ -57,7 +55,6 @@ const NavBar = () => {
               color="white"
               component={Link}
               to="/account"
-              src={account?.avatar}
               className={`${styles.icon} ${styles["nav-link"]}`}
               radius="xl"
             >

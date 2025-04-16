@@ -20,10 +20,7 @@ export interface CreateAccountResponse {
 }
 
 export interface CreateAccountVariables {
-  avatar?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
-  displayName?: string | null;
+  name?: string | null;
   authId?: string | null;
   email?: string | null;
   plan?: Plan_Key | null;
@@ -76,10 +73,7 @@ export interface DeleteTastingVariables {
 
 export interface GetAccountByIdResponse {
   accounts: ({
-    firstName: string;
-    lastName: string;
-    avatar?: string | null;
-    displayName?: string | null;
+    name?: string | null;
     authId: string;
     email: string;
     onboardingComplete: boolean;
@@ -152,10 +146,7 @@ export interface UpdateAccountResponse {
 
 export interface UpdateAccountVariables {
   id?: UUIDString | null;
-  avatar?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
-  displayName?: string | null;
+  name?: string | null;
   authId?: string | null;
   email?: string | null;
   plan?: Plan_Key | null;
@@ -186,32 +177,6 @@ export interface Varietals_Key {
   __typename?: 'Varietals_Key';
 }
 
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function listPlansRef(): QueryRef<ListPlansResponse, undefined>;/* Allow users to pass in custom DataConnect instances */
-export function listPlansRef(dc: DataConnect): QueryRef<ListPlansResponse,undefined>;
-
-export function listPlans(): QueryPromise<ListPlansResponse, undefined>;
-export function listPlans(dc: DataConnect): QueryPromise<ListPlansResponse,undefined>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function listTastingsRef(vars?: ListTastingsVariables): QueryRef<ListTastingsResponse, ListTastingsVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function listTastingsRef(dc: DataConnect, vars?: ListTastingsVariables): QueryRef<ListTastingsResponse,ListTastingsVariables>;
-
-export function listTastings(vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse, ListTastingsVariables>;
-export function listTastings(dc: DataConnect, vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse,ListTastingsVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function getAccountByIdRef(vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse, GetAccountByIdVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function getAccountByIdRef(dc: DataConnect, vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse,GetAccountByIdVariables>;
-
-export function getAccountById(vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse, GetAccountByIdVariables>;
-export function getAccountById(dc: DataConnect, vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse,GetAccountByIdVariables>;
 
 
 /* Allow users to create refs without passing in DataConnect */
@@ -266,5 +231,31 @@ export function deleteTastingRef(dc: DataConnect, vars: DeleteTastingVariables):
 
 export function deleteTasting(vars: DeleteTastingVariables): MutationPromise<DeleteTastingResponse, DeleteTastingVariables>;
 export function deleteTasting(dc: DataConnect, vars: DeleteTastingVariables): MutationPromise<DeleteTastingResponse,DeleteTastingVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function listPlansRef(): QueryRef<ListPlansResponse, undefined>;/* Allow users to pass in custom DataConnect instances */
+export function listPlansRef(dc: DataConnect): QueryRef<ListPlansResponse,undefined>;
+
+export function listPlans(): QueryPromise<ListPlansResponse, undefined>;
+export function listPlans(dc: DataConnect): QueryPromise<ListPlansResponse,undefined>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function listTastingsRef(vars?: ListTastingsVariables): QueryRef<ListTastingsResponse, ListTastingsVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function listTastingsRef(dc: DataConnect, vars?: ListTastingsVariables): QueryRef<ListTastingsResponse,ListTastingsVariables>;
+
+export function listTastings(vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse, ListTastingsVariables>;
+export function listTastings(dc: DataConnect, vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse,ListTastingsVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getAccountByIdRef(vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse, GetAccountByIdVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getAccountByIdRef(dc: DataConnect, vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse,GetAccountByIdVariables>;
+
+export function getAccountById(vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse, GetAccountByIdVariables>;
+export function getAccountById(dc: DataConnect, vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse,GetAccountByIdVariables>;
 
 
