@@ -24,7 +24,7 @@ export default function Tastings() {
 
       <section className={styles.list}>
         {viewable.map((tasting) => (
-          <Card key={tasting.id} wine={tasting} url="tastings" showDate />
+          <Card key={tasting.id} wine={tasting} url="tastings" />
         ))}
       </section>
 
