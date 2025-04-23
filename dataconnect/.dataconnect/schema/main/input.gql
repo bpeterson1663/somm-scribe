@@ -153,7 +153,7 @@ input Tasting_Data {
   price: Float
   purchaseLocation: String
   purchaseLocation_expr: String_Expr
-  rating: Int
+  rating: Float
   region: String
   region_expr: String_Expr
   tags: [String!]
@@ -177,7 +177,7 @@ input Tasting_Filter {
   notes: String_Filter
   price: Float_Filter
   purchaseLocation: String_Filter
-  rating: Int_Filter
+  rating: Float_Filter
   region: String_Filter
   tags: String_ListFilter
   updatedAt: Timestamp_Filter

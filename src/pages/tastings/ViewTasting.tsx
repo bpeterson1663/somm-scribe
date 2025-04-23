@@ -1,13 +1,12 @@
 import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
-import RatingIcon from "@/components/rating/raiting.component";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
 import { selectTastingById } from "@/features/tasting/tastingSelectors";
 import { deleteTastingThunk, tastingSetEdit } from "@/features/tasting/tastingSlice";
 import { getDefaultWineImage } from "@/helpers";
 import styles from "@/pages/styles/pages.module.css";
 import type { TastingT } from "@/schemas/tastings";
-import { ActionIcon, Button, Group, Image, Modal, Stack, Text, Title } from "@mantine/core";
+import { ActionIcon, Button, Group, Image, Modal, Rating, Stack, Text, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import { IconTrash } from "@tabler/icons-react";
@@ -84,10 +83,11 @@ export default function TastingId() {
     name,
     rating,
     varietals,
+    price
   } = tasting;
 
   return (
-    <PageContainer showBack title={name}>
+    <PageContainer>
       <Group align="start">
         <Image
           w={150}
@@ -107,18 +107,16 @@ export default function TastingId() {
           <Title order={5}>Name: {name}</Title>
           <Text size="md">Varietal(s): {varietals.join(", ")}</Text>
           <Text size="md">Region: {region}</Text>
+          <Text size="md">Price: {price}</Text>
         </Stack>
       </Group>
       <Group align="start">
-   
         <Stack align="flex-start" justify="flex-start" gap="xs" w={160} mt={20}>
-    
-          <RatingIcon rating={rating} />
-         
+          <Rating value={rating} readOnly />
         </Stack>
       </Group>
-      <Footer>
-        <Group style={{ width: "100%" }} justify="space-between">
+      <Footer showBack>
+        <Group justify="flex-end">
           <ActionIcon
             variant="filled"
             size={36}

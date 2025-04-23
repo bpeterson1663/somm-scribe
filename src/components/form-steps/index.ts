@@ -1,4 +1,3 @@
-import { DetailsTasting } from "@/components/form-steps/details/details-tasting.component";
-import { Review } from "@/components/form-steps/review/review.component";
+import { DetailsTasting } from "@/components/form-steps/details/form-tasting.component";
 
-export { DetailsTasting, Review };
+export { DetailsTasting };

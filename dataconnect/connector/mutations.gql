@@ -25,7 +25,7 @@ mutation CreateAccount($name: String, $authId: String, $email: String, $plan: Pl
     })
 }
 
-mutation CreateTasting($account: Account_Key, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean, $createdAt: Timestamp) @auth(level: USER) {
+mutation CreateTasting($account: Account_Key, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Float, $purchaseLocation: String, $wouldBuyAgain: Boolean, $createdAt: Timestamp) @auth(level: USER) {
     tasting_insert(data: {
         account: $account,
         name: $name,
@@ -55,7 +55,7 @@ mutation UpdateAccount($id: UUID, $name: String, $authId: String, $email: String
     })
 }
 
-mutation UpdateTasting($id: UUID, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Int, $purchaseLocation: String, $wouldBuyAgain: Boolean, $updatedAt: Timestamp) @auth(level: USER) {
+mutation UpdateTasting($id: UUID, $name: String, $region: String, $date: Timestamp, $notes: String, $imageUrl: String, $tags: [String!], $price: Float, $varietals: [String!], $rating: Float, $purchaseLocation: String, $wouldBuyAgain: Boolean, $updatedAt: Timestamp) @auth(level: USER) {
   tasting_update(id: $id, data: {
         name: $name,
         date: $date,

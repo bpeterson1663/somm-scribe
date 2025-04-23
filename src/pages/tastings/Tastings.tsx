@@ -6,7 +6,7 @@ import { selectUserPlan } from "@/features/plan/planSelector";
 import { selectAllTastings } from "@/features/tasting/tastingSelectors";
 import { useViewMore } from "@/hooks/useViewMore";
 import styles from "@/pages/styles/pages.module.css";
-import { Button, Group, TextInput } from "@mantine/core";
+import { Button, Group, TextInput, Title } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,8 +17,9 @@ export default function Tastings() {
   const currentPlan = useAppSelector(selectUserPlan);
 
   return (
-    <PageContainer showBack title="Tastings">
-      <Group justify="flex-end">
+    <PageContainer>
+      <Group justify="space-between" mb={16}>
+        <Title order={2}>Tastings</Title>
         <TextInput placeholder="Search" onChange={(e) => setSearch(e.target.value)} leftSection={<IconSearch />} />
       </Group>
 
@@ -36,7 +37,7 @@ export default function Tastings() {
         </div>
       )}
       <Footer>
-        <Group justify="flex-end">
+        <Group style={{width: '100%'}} justify="flex-end">
           <Button
             style={{ margin: "0 5px " }}
             disabled={typeof currentPlan.maxTasting === "number" && tastingList.length >= currentPlan.maxTasting}

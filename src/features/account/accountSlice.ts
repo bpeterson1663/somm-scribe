@@ -53,7 +53,7 @@ export const createAccountThunk = createAsyncThunk<
     state: RootState;
   }
 >("account/createAccount", async (request, { rejectWithValue }) => {
-debugger;  
+
   try {
     const { name, planId, email, authId, onboardingComplete } = request
     const createdAt = new Date().toISOString();
@@ -70,7 +70,7 @@ debugger;
     };
 
     const { data } = await createAccount(dc, account);
-    debugger
+
     const response: AccountT = {
       ...request,
       id: data.account_insert.id,

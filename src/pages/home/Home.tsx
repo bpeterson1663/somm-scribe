@@ -26,9 +26,14 @@ export default function Home() {
 
           <section className={styles["preview-list"]}>
             {tastingList.slice(0, 10).map((tasting) => (
-              <Card key={tasting.id} wine={tasting} url="tastings" showDate />
+              <Card key={tasting.id} wine={tasting} url="tastings" />
             ))}
           </section>
+          <aside>
+            <div>
+              Find a wine
+            </div>
+          </aside>
         </Group>
       </Stack>
       <Footer>

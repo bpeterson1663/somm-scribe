@@ -1,6 +1,6 @@
 import { useFileInput } from "@/hooks/useFileInput";
 import { useTastingContext } from "@/pages/tastings/form-context";
-import { Box, FileInput, Group, Image, Pill, PillsInput, TextInput, rem } from "@mantine/core";
+import { Box, Checkbox, FileInput, Group, Image, NumberInput, Pill, PillsInput, Rating, TextInput, Textarea, rem } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { IconUpload } from "@tabler/icons-react";
 import { type ChangeEvent, type KeyboardEvent, useEffect, useState } from "react";
@@ -12,7 +12,6 @@ export function DetailsTasting() {
   const [currentTag, setCurrentTag] = useState("");
   const { file, blob, imgPreview, handleFileChange } = useFileInput();
   const form = useTastingContext();
-
 
   useEffect(() => {
     setVarietals(form.values.varietals);
@@ -100,23 +99,31 @@ export function DetailsTasting() {
 
   return (
     <Box>
-      <DatePickerInput
-        {...form.getInputProps("date")}
-        valueFormat="YYYY MMM DD"
-        name="date"
-        label="Date"
-        onChange={onDateChange}
-        data-testid="date"
-      />
 
       <TextInput
         data-testid="name"
         mt="xs"
         required
-        label="Name"
+        label="Name of Wine"
         {...form.getInputProps("name")}
       />
 
+      <DatePickerInput
+        {...form.getInputProps("date")}
+        valueFormat="YYYY MMM DD"
+        name="date"
+        label="Date Tasted"
+        onChange={onDateChange}
+        data-testid="date"
+        w={200}
+      />
+ 
+      <Rating
+        data-testid="review"
+        fractions={2}
+        size="xl"
+        {...form.getInputProps("rating")}
+      />
 
       <TextInput
         data-testid="region"
@@ -126,61 +133,77 @@ export function DetailsTasting() {
         {...form.getInputProps("region")}
       />
 
-      <TextInput
-        data-testid="purchaseLocation"
-        mt="xs"
-        required
-        label="Purchase Location"
-        {...form.getInputProps("purchaseLocation")}
+        <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietals")}>
+          <Pill.Group>
+            {varietals.map((varietal) => (
+              <Pill
+                key={varietal}
+                onRemove={() => {
+                  handleRemove(varietal);
+                }}
+                withRemoveButton
+              >
+                {" "}
+                {varietal}
+              </Pill>
+            ))}
+            <PillsInput.Field
+              value={currentVarietal}
+              onBlur={onVarietalBlur}
+              onKeyDown={onVarietalKeyDown}
+              onChange={onVarietalChange}
+            />
+          </Pill.Group>
+        </PillsInput>
+
+        <PillsInput data-testid="tags" mt="xs" label="Tag(s)" required {...form.getInputProps("tags")}>
+          <Pill.Group>
+            {tags.map((tag) => (
+              <Pill
+                key={tag}
+                onRemove={() => {
+                  handleTagRemove(tag);
+                }}
+                withRemoveButton
+              >
+                {" "}
+                {tag}
+              </Pill>
+            ))}
+            <PillsInput.Field
+              value={currentTag}
+              onBlur={onTagBlur}
+              onKeyDown={onTagKeyDown}
+              onChange={onTagChange}
+            />
+          </Pill.Group>
+        </PillsInput>
+
+      <Group>
+        <NumberInput w={200} label="Price" {...form.getInputProps("price")} />
+
+        <TextInput
+          w={200}
+          data-testid="purchaseLocation"
+          mt="xs"
+          label="Purchase Location"
+          {...form.getInputProps("purchaseLocation")}
+        />
+      </Group>
+
+      <Checkbox label="Would Buy Again" {...form.getInputProps("wouldBuyAgain")} />
+
+      <Textarea
+        data-testid="notes"
+        autosize
+        minRows={4}
+        maxRows={4}
+        id="notes"
+        label="Tasting Notes"
+        {...form.getInputProps("notes")}
       />
-
-      <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietals")}>
-        <Pill.Group>
-          {varietals.map((varietal) => (
-            <Pill
-              key={varietal}
-              onRemove={() => {
-                handleRemove(varietal);
-              }}
-              withRemoveButton
-            >
-              {" "}
-              {varietal}
-            </Pill>
-          ))}
-          <PillsInput.Field
-            value={currentVarietal}
-            onBlur={onVarietalBlur}
-            onKeyDown={onVarietalKeyDown}
-            onChange={onVarietalChange}
-          />
-        </Pill.Group>
-      </PillsInput>
-
-      <PillsInput data-testid="tags" mt="xs" label="Tag(s)" required {...form.getInputProps("tags")}>
-        <Pill.Group>
-          {tags.map((tag) => (
-            <Pill
-              key={tag}
-              onRemove={() => {
-                handleTagRemove(tag);
-              }}
-              withRemoveButton
-            >
-              {" "}
-              {tag}
-            </Pill>
-          ))}
-          <PillsInput.Field
-            value={currentTag}
-            onBlur={onTagBlur}
-            onKeyDown={onTagKeyDown}
-            onChange={onTagChange}
-          />
-        </Pill.Group>
-      </PillsInput>
-
-      <FileInput
+     
+     <FileInput
         mt="xs"
         leftSection={<IconUpload style={{ width: rem(18), height: rem(18) }} />}
         accept="image/png,image/jpeg,image/png"
@@ -195,6 +218,7 @@ export function DetailsTasting() {
           <Image radius="md" height={300} src={imgPreview || form.values.imageUrl} alt="" />
         </Group>
       )}
+
     </Box>
   );
 }

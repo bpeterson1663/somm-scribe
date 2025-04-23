@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer/footer.component";
-import { DetailsTasting, Review } from "@/components/form-steps";
+import { DetailsTasting } from "@/components/form-steps";
 import PageContainer from "@/components/page-container/page-container.component";
 import { uploadImage } from "@/database";
 import { useAppDispatch, useAppSelector } from "@/features/hooks";
@@ -68,17 +68,14 @@ const EditTasting = () => {
   };
 
   return (
-    <PageContainer showCancel showWarning={form.isDirty()}>
+    <PageContainer>
       <TastingFormProvider form={form}>
         <Box className={styles.form} component="form" onSubmit={form.onSubmit(onSubmitHandler)}>
           <Box className={styles.section}>
             <DetailsTasting />
           </Box>
-          <Box className={styles.section}>
-            <Review />
-          </Box>
-          <Footer>
-            <Group style={{ width: "100%" }} justify="flex-end">
+          <Footer showCancel showWarning={form.isDirty()}>
+            <Group justify="flex-end">
               <Button loading={loading} disabled={disableSave()} type="submit">
                 Save
               </Button>

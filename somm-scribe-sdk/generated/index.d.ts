@@ -184,6 +184,32 @@ export interface Varietals_Key {
 
 
 /* Allow users to create refs without passing in DataConnect */
+export function listPlansRef(): QueryRef<ListPlansResponse, undefined>;/* Allow users to pass in custom DataConnect instances */
+export function listPlansRef(dc: DataConnect): QueryRef<ListPlansResponse,undefined>;
+
+export function listPlans(): QueryPromise<ListPlansResponse, undefined>;
+export function listPlans(dc: DataConnect): QueryPromise<ListPlansResponse,undefined>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function listTastingsRef(vars?: ListTastingsVariables): QueryRef<ListTastingsResponse, ListTastingsVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function listTastingsRef(dc: DataConnect, vars?: ListTastingsVariables): QueryRef<ListTastingsResponse,ListTastingsVariables>;
+
+export function listTastings(vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse, ListTastingsVariables>;
+export function listTastings(dc: DataConnect, vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse,ListTastingsVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
+export function getAccountByIdRef(vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse, GetAccountByIdVariables>;
+/* Allow users to pass in custom DataConnect instances */
+export function getAccountByIdRef(dc: DataConnect, vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse,GetAccountByIdVariables>;
+
+export function getAccountById(vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse, GetAccountByIdVariables>;
+export function getAccountById(dc: DataConnect, vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse,GetAccountByIdVariables>;
+
+
+/* Allow users to create refs without passing in DataConnect */
 export function createPlanRef(vars?: CreatePlanVariables): MutationRef<CreatePlanResponse, CreatePlanVariables>;
 /* Allow users to pass in custom DataConnect instances */
 export function createPlanRef(dc: DataConnect, vars?: CreatePlanVariables): MutationRef<CreatePlanResponse,CreatePlanVariables>;
@@ -235,31 +261,5 @@ export function deleteTastingRef(dc: DataConnect, vars: DeleteTastingVariables):
 
 export function deleteTasting(vars: DeleteTastingVariables): MutationPromise<DeleteTastingResponse, DeleteTastingVariables>;
 export function deleteTasting(dc: DataConnect, vars: DeleteTastingVariables): MutationPromise<DeleteTastingResponse,DeleteTastingVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function listPlansRef(): QueryRef<ListPlansResponse, undefined>;/* Allow users to pass in custom DataConnect instances */
-export function listPlansRef(dc: DataConnect): QueryRef<ListPlansResponse,undefined>;
-
-export function listPlans(): QueryPromise<ListPlansResponse, undefined>;
-export function listPlans(dc: DataConnect): QueryPromise<ListPlansResponse,undefined>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function listTastingsRef(vars?: ListTastingsVariables): QueryRef<ListTastingsResponse, ListTastingsVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function listTastingsRef(dc: DataConnect, vars?: ListTastingsVariables): QueryRef<ListTastingsResponse,ListTastingsVariables>;
-
-export function listTastings(vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse, ListTastingsVariables>;
-export function listTastings(dc: DataConnect, vars?: ListTastingsVariables): QueryPromise<ListTastingsResponse,ListTastingsVariables>;
-
-
-/* Allow users to create refs without passing in DataConnect */
-export function getAccountByIdRef(vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse, GetAccountByIdVariables>;
-/* Allow users to pass in custom DataConnect instances */
-export function getAccountByIdRef(dc: DataConnect, vars?: GetAccountByIdVariables): QueryRef<GetAccountByIdResponse,GetAccountByIdVariables>;
-
-export function getAccountById(vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse, GetAccountByIdVariables>;
-export function getAccountById(dc: DataConnect, vars?: GetAccountByIdVariables): QueryPromise<GetAccountByIdResponse,GetAccountByIdVariables>;
 
 

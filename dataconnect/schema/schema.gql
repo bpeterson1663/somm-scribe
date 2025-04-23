@@ -29,7 +29,7 @@ type Tasting @table {
     imageUrl: String
     tags: [String]!
     varietals: [String!]!
-    rating: Int!
+    rating: Float!
     purchaseLocation: String
     price: Float!
     wouldBuyAgain: Boolean

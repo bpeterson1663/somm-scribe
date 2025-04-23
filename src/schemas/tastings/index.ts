@@ -30,7 +30,7 @@ export const INITIAL_VALUES: TastingT = {
   imageUrl: "",
   varietals: [],
   date: new Date(),
-  rating: 0,
+  rating: 3,
   notes: "",
   tags: [],
   wouldBuyAgain: false,
