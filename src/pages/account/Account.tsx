@@ -112,14 +112,15 @@ export default function Account() {
   }
 
   return (
-    <PageContainer title="Your Account" showBack>
+    <PageContainer>
       <Group justify="space-between" pl={10}>
+        <Title order={2}>Your Account</Title>
         <Box w={400}>
           <form onSubmit={form.onSubmit(onSubmitHandler)}>
             <TextInput required mt="xs" type="name" label="Name" {...form.getInputProps("name")} />
             <TextInput mt="xs" type="email" label="Email" disabled {...form.getInputProps("email")} />
-            <Footer>
-              <Group style={{ width: "100%" }} justify="space-between">
+            <Footer showBack>
+              <Group justify="space-between">
                 <Button onClick={handleLogout}>Sign Out</Button>
                 <Button type="submit" disabled={disableSave()} loading={loading}>
                   Save
