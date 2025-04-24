@@ -1,5 +1,5 @@
 import { auth, dc, signInWithGooglePopup } from "@/database";
-import type { RootState } from "@/features/store";
+import type { RootState } from "@/data/store";
 import type { AccountT } from "@/schemas/account";
 import { defaultAccount } from "@/schemas/account";
 import type { AuthUserT, CurrentUser, FetchStatusT, LoginT, MessageT, SignUpT } from "@/types";

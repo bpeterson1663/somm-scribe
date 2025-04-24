@@ -1,50 +1,8 @@
+import { RootState } from "@/data/store";
 import { dc } from "@/database";
-import type { RootState } from "@/features/store";
-import { type AccountT, defaultAccount } from "@/schemas/account";
-import type { FetchStatusT, MessageT } from "@/types";
-import {
-  CreateAccountVariables,
-  type GetAccountByIdVariables,
-  type UpdateAccountVariables,
-  createAccount,
-  getAccountById,
-  updateAccount,
-} from "@firebasegen/somm-scribe-connector";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-interface InitialUserState {
-  account: AccountT;
-  status: FetchStatusT;
-  message: MessageT;
-}
-
-const initialState: InitialUserState = {
-  account: defaultAccount,
-  status: "idle",
-  message: null,
-};
-
-export const accountSlice = createSlice({
-  name: "account",
-  initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder
-      .addCase(createAccountThunk.fulfilled, (state, action) => {
-        state.account = action.payload;
-      })
-      .addCase(getAccountByIdThunk.fulfilled, (state, action) => {
-        state.account = action.payload;
-      })
-      .addCase(editAccountThunk.fulfilled, (state, action) => {
-        state.account = action.payload;
-      });
-  },
-});
-
-export const accountSelector = (state: RootState) => state.account;
-
-export default accountSlice.reducer;
+import { AccountT, defaultAccount } from "@/schemas/account";
+import { createAccount, CreateAccountVariables, getAccountById, GetAccountByIdVariables, updateAccount, UpdateAccountVariables } from "@firebasegen/somm-scribe-connector";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const createAccountThunk = createAsyncThunk<
   AccountT,

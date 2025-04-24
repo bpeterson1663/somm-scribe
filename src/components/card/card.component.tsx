@@ -15,7 +15,7 @@ interface Props {
 
 export function Card({ wine, url }: Props) {
   const navigate = useNavigate();
-  const { id, region, date, name, imageUrl, varietals, rating, wouldBuyAgain } = wine;
+  const { id, region, date, name, imageUrl, varietals, rating, wouldBuyAgain, tags } = wine;
 
   return (
     <div
@@ -53,6 +53,21 @@ export function Card({ wine, url }: Props) {
               leftSection={<IconTag  size={14}  />} 
               key={`${varietal}+${idx}`}>
                 {varietal}
+              </Badge>
+          ))}
+          {tags.map((tag, idx) => (
+            <Badge 
+              styles={{
+                root: {
+                  color: '#333', 
+                  marginRight: '10px'
+                },
+              }} 
+              size="md"  
+              color="primary.1" 
+              leftSection={<IconTag  size={14}  />} 
+              key={`${tag}+${idx}`}>
+                {tag}
               </Badge>
           ))}
           <Badge 

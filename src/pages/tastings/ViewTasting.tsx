@@ -1,8 +1,9 @@
 import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
-import { useAppDispatch, useAppSelector } from "@/features/hooks";
-import { selectTastingById } from "@/features/tasting/tastingSelectors";
-import { deleteTastingThunk, tastingSetEdit } from "@/features/tasting/tastingSlice";
+import { useAppDispatch, useAppSelector } from "@/data/hooks";
+import { selectTastingById } from "@/data/tasting/tastingSelectors";
+import { deleteTastingThunk } from "@/api/tasting";
+import { tastingSetEdit } from "@/data/tasting/tastingSlice";
 import { getDefaultWineImage } from "@/helpers";
 import styles from "@/pages/styles/pages.module.css";
 import type { TastingT } from "@/schemas/tastings";

@@ -1,7 +1,7 @@
 import { Schema, type SignInFormT } from "@/components/sign-in-form/scema";
 import styles from "@/components/sign-in-form/sign-in-form.module.css";
-import { fetchLogin, fetchSignInWithGoogle } from "@/features/auth/authSlice";
-import { useAppDispatch, useAppSelector } from "@/features/hooks";
+import { fetchLogin, fetchSignInWithGoogle } from "@/data/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/data/hooks";
 import { generateAuthErrorMessage } from "@/helpers";
 import { Box, Button, Group, TextInput } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";

@@ -1,4 +1,4 @@
-import type { RootState } from "@/features/store";
+import type { RootState } from "@/data/store";
 import type { PlanT } from "@/schemas/plans";
 import { createSelector } from "@reduxjs/toolkit";
 

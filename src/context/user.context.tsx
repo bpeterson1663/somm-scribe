@@ -1,6 +1,6 @@
-import { getAccountByIdThunk } from "@/features/account/accountSlice";
-import { setAuth } from "@/features/auth/authSlice";
-import { useAppDispatch, useAppSelector } from "@/features/hooks";
+import { getAccountByIdThunk } from "@/api/account";
+import { setAuth } from "@/data/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/data/hooks";
 import type { AuthUserT } from "@/types";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { type Dispatch, type PropsWithChildren, createContext, useEffect, useState } from "react";

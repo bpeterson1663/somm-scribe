@@ -1,9 +1,9 @@
 import { Card } from "@/components/card/card.component";
 import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
-import { useAppSelector } from "@/features/hooks";
-import { selectUserPlan } from "@/features/plan/planSelector";
-import { selectAllTastings } from "@/features/tasting/tastingSelectors";
+import { useAppSelector } from "@/data/hooks";
+import { selectUserPlan } from "@/data/plan/planSelector";
+import { selectAllTastings } from "@/data/tasting/tastingSelectors";
 import { useViewMore } from "@/hooks/useViewMore";
 import styles from "@/pages/styles/pages.module.css";
 import { Button, Group, TextInput, Title } from "@mantine/core";

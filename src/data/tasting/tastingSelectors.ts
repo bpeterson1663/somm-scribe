@@ -1,4 +1,4 @@
-import type { RootState } from "@/features/store";
+import type { RootState } from "@/data/store";
 import { createSelector } from "@reduxjs/toolkit";
 
 const tastings = (state: RootState) => state.tasting.tastingList;

@@ -1,10 +1,10 @@
 import { Schema, type SignUpFormT } from "@/components/sign-up-form/scehma";
 import styles from "@/components/sign-up-form/sign-up-form.module.css";
-import { createAccountThunk } from "@/features/account/accountSlice";
-import { fetchSignUp } from "@/features/auth/authSlice";
-import { fetchSignInWithGoogle } from "@/features/auth/authSlice";
-import { useAppDispatch, useAppSelector } from "@/features/hooks";
-import { selectBeginnerPlan } from "@/features/plan/planSelector";
+import { createAccountThunk } from "@/data/account/accountSlice";
+import { fetchSignUp } from "@/data/auth/authSlice";
+import { fetchSignInWithGoogle } from "@/data/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/data/hooks";
+import { selectBeginnerPlan } from "@/data/plan/planSelector";
 import { generateAuthErrorMessage } from "@/helpers";
 import { Box, Button, Group, TextInput } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";

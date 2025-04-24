@@ -1,8 +1,8 @@
 import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
-import { editAccountThunk } from "@/features/account/accountSlice";
-import { fetchLogout } from "@/features/auth/authSlice";
-import { useAppDispatch, useAppSelector } from "@/features/hooks";
+import { editAccountThunk } from "@/api/account";
+import { fetchLogout } from "@/data/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/data/hooks";
 import {
 
   Badge,
@@ -18,7 +18,7 @@ import {
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 
-import { selectUserPlan } from "@/features/plan/planSelector";
+import { selectUserPlan } from "@/data/plan/planSelector";
 import { AccountSchema, type AccountT, defaultAccount } from "@/schemas/account";
 import type { PlanT } from "@/schemas/plans";
 import { useState } from "react";

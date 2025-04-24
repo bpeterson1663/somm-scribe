@@ -1,5 +1,5 @@
-import { useAppSelector } from "@/features/hooks";
-import { selectUserPlan } from "@/features/plan/planSelector";
+import { useAppSelector } from "@/data/hooks";
+import { selectUserPlan } from "@/data/plan/planSelector";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";

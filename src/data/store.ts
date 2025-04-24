@@ -1,7 +1,7 @@
-import accountReducer from "@/features/account/accountSlice";
-import authReducer from "@/features/auth/authSlice";
-import planReducer from "@/features/plan/planSlice";
-import tastingReducer from "@/features/tasting/tastingSlice";
+import accountReducer from "@/data/account/accountSlice";
+import authReducer from "@/data/auth/authSlice";
+import planReducer from "@/data/plan/planSlice";
+import tastingReducer from "@/data/tasting/tastingSlice";
 import { type Action, type ThunkAction, configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({

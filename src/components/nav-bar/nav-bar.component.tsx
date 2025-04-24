@@ -1,5 +1,5 @@
 import styles from "@/components/nav-bar/nav-bar.module.css";
-import { useAppSelector } from "@/features/hooks";
+import { useAppSelector } from "@/data/hooks";
 import { useMobile } from "@/hooks/useMobile";
 import { Avatar, Burger, Button, Container, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";

@@ -4,9 +4,9 @@ import { type ReactNode, Suspense, lazy, useContext, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { UserContext } from "@/context/user.context";
-import { useAppDispatch, useAppSelector } from "@/features/hooks";
-import { fetchPlans } from "@/features/plan/planSlice";
-import { fetchTastingsThunk } from "@/features/tasting/tastingSlice";
+import { useAppDispatch, useAppSelector } from "@/data/hooks";
+import { fetchPlans } from "@/data/plan/planSlice";
+import { fetchTastingsThunk } from "@/api/tasting";
 
 const Layout = lazy(() => import("@/components/layout/layout.component"));
 
