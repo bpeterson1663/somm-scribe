@@ -8,11 +8,9 @@
     "build": "tsc -b && vite build",
     "deploy-prod": "tsc -b && vite build && firebase deploy --only hosting",
     "preview": "vite preview",
-    "lint": "pnpm biome check --write ./",
-    "deploy-data": "firebase deploy --only dataconnect:somm-scribe:schema,dataconnect:somm-scribe:somm-scribe-connector"
+    "lint": "pnpm biome check --write ./"
   },
   "dependencies": {
-    "@firebasegen/somm-scribe-connector": "file:somm-scribe-sdk/generated",
     "@mantine/core": "^7.17.4",
     "@mantine/dates": "^7.17.4",
     "@mantine/form": "^7.17.4",
@@ -21,7 +19,6 @@
     "@reduxjs/toolkit": "^2.6.1",
     "@tabler/icons-react": "^3.31.0",
     "dayjs": "^1.11.13",
-    "driver.js": "^1.3.5",
     "firebase": "11.6.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

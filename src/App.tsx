@@ -5,7 +5,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import { UserContext } from "@/context/user.context";
 import { useAppDispatch, useAppSelector } from "@/data/hooks";
-import { fetchPlans } from "@/data/plan/planSlice";
+import { fetchPlans } from "@/api/plan";
 import { fetchTastingsThunk } from "@/api/tasting";
 
 const Layout = lazy(() => import("@/components/layout/layout.component"));
@@ -30,7 +30,7 @@ function App() {
       await dispatch(fetchPlans()).unwrap();
       if (account?.id) {
         try {
-          await dispatch(fetchTastingsThunk({ accountId: account.id }))
+          await dispatch(fetchTastingsThunk())
         } catch (err) {
           console.error(err);
           notifications.show({

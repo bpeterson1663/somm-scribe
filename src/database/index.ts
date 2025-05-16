@@ -1,7 +1,5 @@
-import { connectorConfig } from "@firebasegen/somm-scribe-connector";
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { getDataConnect } from "firebase/data-connect";
 // import { getAnalytics } from 'firebase/analytics'
 import { getFirestore } from "firebase/firestore/lite";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -31,8 +29,6 @@ export const db = getFirestore(app);
 export const auth = getAuth();
 
 export const storage = getStorage();
-
-export const dc = getDataConnect(app, connectorConfig);
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({

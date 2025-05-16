@@ -1,11 +1,11 @@
-import { auth, dc, signInWithGooglePopup } from "@/database";
+import { auth, signInWithGooglePopup } from "@/database";
 import type { RootState } from "@/data/store";
 import type { AccountT } from "@/schemas/account";
 import { defaultAccount } from "@/schemas/account";
 import type { AuthUserT, CurrentUser, FetchStatusT, LoginT, MessageT, SignUpT } from "@/types";
-import { type GetAccountByIdVariables, createAccount, getAccountById } from "@firebasegen/somm-scribe-connector";
 import { type PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { authApiClient } from "@/api/client";
 
 interface InitialAuthState {
   currentUser: CurrentUser;
@@ -114,33 +114,21 @@ export const fetchSignInWithGoogle = createAsyncThunk<
       return null;
     }
     //TODO: refactor
-    const params: GetAccountByIdVariables = { authId: user.uid };
-
-    const responseById = await getAccountById(params);
-    if (responseById?.data?.accounts?.length === 1) {
-      const account = responseById.data.accounts[0];
-      return {
-        id: account.id,
-        name: account.name,
-        authId: account.authId,
-        email: account.email,
-        planId: account.plan.id,
-      } as AccountT;
+    const account = await authApiClient<AccountT | undefined>('/accounts');
+    if (account) {
+      return account
     }
 
+    const body = JSON.stringify({
+      ...defaultAccount,
+      email: user.email,
+    })
+
     // Create new account
-    const { data } = await createAccount(dc, {
-      ...defaultAccount,
-      email: user.email,
+    return await authApiClient<AccountT>('/accounts', {
+      method: 'POST',
+      body
     });
-
-    const response = {
-      ...defaultAccount,
-      email: user.email,
-      id: data.account_insert.id,
-    };
-
-    return response as AccountT;
   } catch (err) {
     return rejectWithValue(err);
   }

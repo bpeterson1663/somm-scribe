@@ -1,6 +1,6 @@
 import { Schema, type SignUpFormT } from "@/components/sign-up-form/scehma";
 import styles from "@/components/sign-up-form/sign-up-form.module.css";
-import { createAccountThunk } from "@/data/account/accountSlice";
+import { createAccountThunk } from "@/api/account";
 import { fetchSignUp } from "@/data/auth/authSlice";
 import { fetchSignInWithGoogle } from "@/data/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/data/hooks";

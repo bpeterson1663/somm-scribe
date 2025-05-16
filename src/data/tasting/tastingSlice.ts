@@ -31,7 +31,7 @@ export const tastingSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchTastingsThunk.fulfilled, (state, action) => {
-        const tastingList = action.payload.tastings.map((tasting) => {
+        const tastingList = action.payload.map((tasting) => {
           const price = typeof tasting.price === "string" ? Number.parseFloat(tasting.price) : tasting.price;
 
           const data: TastingT = {
