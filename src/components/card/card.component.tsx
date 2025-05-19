@@ -1,11 +1,11 @@
 
 import { getDefaultWineImage } from "@/helpers";
 import type { TastingT } from "@/schemas/tastings";
-import { Badge, Rating, Text, Title } from "@mantine/core";
+import { Badge, Image, Rating, Text, Title } from "@mantine/core";
 import { IconTag, IconWorldStar, IconCalendarWeek, IconCheck } from "@tabler/icons-react";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-
+import grapeIcon from "@/assets/images/grape-icon.svg";
 import "@/components/card/card.scss";
 
 interface Props {
@@ -50,7 +50,7 @@ export function Card({ wine, url }: Props) {
               }} 
               size="md"  
               color="primary.1" 
-              leftSection={<IconTag  size={14}  />} 
+              leftSection={<Image src={grapeIcon} w={14} h={14} />} 
               key={varietal.id}>
                 {varietal.name}
               </Badge>
