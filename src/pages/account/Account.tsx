@@ -18,7 +18,6 @@ import {
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 
-import { selectUserPlan } from "@/data/plan/planSelector";
 import { AccountSchema, type AccountT, defaultAccount } from "@/schemas/account";
 import type { PlanT } from "@/schemas/plans";
 import { useState } from "react";
@@ -31,7 +30,6 @@ export default function Account() {
   const { account } = useAppSelector((state) => state.account);
   const [loading, setLoading] = useState(false);
   const { planList } = useAppSelector((state) => state.plan);
-  const currentPlan = useAppSelector(selectUserPlan);
 
   const form = useForm({
     initialValues: {
@@ -93,13 +91,13 @@ export default function Account() {
       return "Current Plan";
     }
 
-    if (currentPlan.downgradablePlans.map((id) => id.replace(/-/g, "")).includes(plan.id)) {
-      return "Downgrade Plan";
-    }
+    // if (currentPlan.downgradablePlans.map((id) => id.replace(/-/g, "")).includes(plan.id)) {
+    //   return "Downgrade Plan";
+    // }
 
-    if (currentPlan.upgradablePlans.map((id) => id.replace(/-/g, "")).includes(plan.id)) {
-      return "Upgrade Plan";
-    }
+    // if (currentPlan.upgradablePlans.map((id) => id.replace(/-/g, "")).includes(plan.id)) {
+    //   return "Upgrade Plan";
+    // }
 
     return "";
   }
@@ -153,7 +151,7 @@ export default function Account() {
                   {plan.description}
                 </Text>
                 <List c="dimmed">
-                  <List.Item>
+                  {/* <List.Item>
                     {typeof plan.maxTasting === "number"
                       ? `Save up to ${plan.maxTasting} tastings`
                       : "Unlimited Tastings"}
@@ -162,7 +160,7 @@ export default function Account() {
                     {typeof plan.maxWine === "number"
                       ? `Save up to ${plan.maxWine} wines in your cellar`
                       : "Unlimited Wines"}
-                  </List.Item>
+                  </List.Item> */}
                 </List>
 
                 <Button

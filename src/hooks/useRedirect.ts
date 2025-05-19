@@ -1,5 +1,3 @@
-import { useAppSelector } from "@/data/hooks";
-import { selectUserPlan } from "@/data/plan/planSelector";
 import { notifications } from "@mantine/notifications";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 export function useCellarRedirect() {
   const navigate = useNavigate();
   const hasRedirected = useRef(false);
-  const currentPlan = useAppSelector(selectUserPlan);
 
   useEffect(() => {
     const onLoad = () => {
-      if (!hasRedirected.current && currentPlan.maxWine === 0) {
+      if (!hasRedirected.current) {
         navigate("/");
         hasRedirected.current = true;
         notifications.show({
@@ -21,5 +18,5 @@ export function useCellarRedirect() {
       }
     };
     onLoad();
-  }, [currentPlan.maxWine, navigate]);
+  }, [navigate]);
 }

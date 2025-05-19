@@ -25,9 +25,12 @@ export default function Home() {
           </Group>
 
           <section className={styles["preview-list"]}>
-            {tastingList.slice(0, 10).map((tasting) => (
-              <Card key={tasting.id} wine={tasting} url="tastings" />
-            ))}
+            {tastingList.slice(0, 10).map((tasting) => {
+              if (tasting) {
+                return <Card key={tasting.id} wine={tasting} url="tastings" />
+
+              }
+            })}
           </section>
           <aside>
             <div>
@@ -39,7 +42,7 @@ export default function Home() {
       <Footer>
         <Group justify="flex-end">
           <Button
-            disabled={typeof currentPlan.maxTasting === "number" && tastingList.length >= currentPlan.maxTasting}
+            // disabled={typeof currentPlan.maxTasting === "number" && tastingList.length >= currentPlan.maxTasting}
             onClick={() => navigate("/tastings/new")}
             id="add-tastings"
           >

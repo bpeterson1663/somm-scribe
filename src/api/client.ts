@@ -8,15 +8,17 @@ type RequestOptions = RequestInit & {
 
 export async function apiClient<TResponse>(
   endpoint: string,
-  options: RequestOptions = {}
+  options: RequestOptions = {},
+  authToken?: string
 ): Promise<TResponse> {
 
   const { headers, method, ...rest } = options;
-
   const res = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...rest,
+    method,
     headers: {
       "Content-Type": "application/json",
+      ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
       ...headers,
     },
   });
@@ -35,15 +37,14 @@ export async function authApiClient<T>(
 ): Promise<T> {
   const auth = getAuth();
   const user = auth.currentUser;
-
+  
   if (!user) {
     throw new Error("No authenticated user found");
   }
 
   const token = await user.getIdToken();
-
   return apiClient<T>(endpoint, {
     ...options,
-    authToken: token,
-  });
+  },
+  token);
 }

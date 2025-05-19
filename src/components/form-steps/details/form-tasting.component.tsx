@@ -1,100 +1,28 @@
+import { useAppSelector } from "@/data/hooks";
 import { useFileInput } from "@/hooks/useFileInput";
 import { useTastingContext } from "@/pages/tastings/form-context";
-import { Box, Checkbox, FileInput, Group, Image, NumberInput, Pill, PillsInput, Rating, TextInput, Textarea, rem } from "@mantine/core";
+import { Box, Checkbox, FileInput, Group, Image, MultiSelect, NumberInput, Rating, TextInput, Textarea, rem } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
+import { Select } from '@mantine/core';
+
 import { IconUpload } from "@tabler/icons-react";
-import { type ChangeEvent, type KeyboardEvent, useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function DetailsTasting() {
-  const [varietals, setVarietals] = useState([""]);
-  const [tags, setTags] = useState([""])
-  const [currentVarietal, setCurrentVarietal] = useState("");
-  const [currentTag, setCurrentTag] = useState("");
   const { file, blob, imgPreview, handleFileChange } = useFileInput();
   const form = useTastingContext();
+  const { varietalList } = useAppSelector(state=> state.varietal)
+  const { tagList } = useAppSelector(state => state.tag)
+  const { regionList } = useAppSelector(state => state.region)
 
   useEffect(() => {
-    setVarietals(form.values.varietals);
-    setTags(form.values.tags)
     form.setFieldValue("imageBlob", blob);
   }, [blob]);
-
-  const handleRemove = (val: string) => {
-    form.setFieldValue(
-      "varietals",
-      varietals.filter((varietal) => varietal !== val),
-    );
-    setVarietals(varietals.filter((varietal) => varietal !== val));
-  };
-
-  const handleTagRemove = (val: string) => {
-    form.setFieldValue(
-      "tags",
-      tags.filter((tag) => tag !== val),
-    );
-    setTags(tags.filter((tag) => tag !== val));
-  };
 
   const onDateChange = (value: Date | null) => {
     if (value) {
       form.setFieldValue("date", value);
     }
-  };
-
-  const onVarietalKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      if (currentVarietal === "") {
-        return;
-      }
-
-      setVarietals([...varietals, currentVarietal]);
-      form.setFieldValue("varietals", [...varietals, currentVarietal]);
-      setCurrentVarietal("");
-    }
-  };
-
-  const onTagKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      if (currentTag === "") {
-        return;
-      }
-
-      setTags([...tags, currentTag]);
-      form.setFieldValue("tags", [...tags, currentTag]);
-      setCurrentTag("");
-    }
-  };
-
-  const onVarietalBlur = () => {
-    if (currentVarietal === "") {
-      return;
-    }
-
-    setVarietals([...varietals, currentVarietal]);
-    form.setFieldValue("varietals", [...varietals, currentVarietal]);
-    setCurrentVarietal("");
-  };
-
-  const onTagBlur = () => {
-    if (currentTag === "") {
-      return;
-    }
-
-    setTags([...tags, currentTag]);
-    form.setFieldValue("tags", [...tags, currentTag]);
-    setCurrentTag("");
-  };
-
-  const onVarietalChange = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    setCurrentVarietal(event.currentTarget.value);
-  };
-
-  const onTagChange = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    setCurrentTag(event.currentTarget.value);
   };
 
   return (
@@ -125,59 +53,31 @@ export function DetailsTasting() {
         {...form.getInputProps("rating")}
       />
 
-      <TextInput
+      <Select
         data-testid="region"
         mt="xs"
+        searchable
         required
+        data={regionList.map(region => ({value: region.id, label: region.name}))}
         label="Region"
         {...form.getInputProps("region")}
       />
 
-        <PillsInput data-testid="varietal" mt="xs" label="Varietal(s)" required {...form.getInputProps("varietals")}>
-          <Pill.Group>
-            {varietals.map((varietal) => (
-              <Pill
-                key={varietal}
-                onRemove={() => {
-                  handleRemove(varietal);
-                }}
-                withRemoveButton
-              >
-                {" "}
-                {varietal}
-              </Pill>
-            ))}
-            <PillsInput.Field
-              value={currentVarietal}
-              onBlur={onVarietalBlur}
-              onKeyDown={onVarietalKeyDown}
-              onChange={onVarietalChange}
-            />
-          </Pill.Group>
-        </PillsInput>
+      <MultiSelect  
+        searchable
+        label="Varietal(s)"
+        placeholder="Varietal(s)"
+        data={varietalList.map(varietal => ({value: varietal.id, label: varietal.name}))}
+        {...form.getInputProps("varietals")} 
+      />
 
-        <PillsInput data-testid="tags" mt="xs" label="Tag(s)" required {...form.getInputProps("tags")}>
-          <Pill.Group>
-            {tags.map((tag) => (
-              <Pill
-                key={tag}
-                onRemove={() => {
-                  handleTagRemove(tag);
-                }}
-                withRemoveButton
-              >
-                {" "}
-                {tag}
-              </Pill>
-            ))}
-            <PillsInput.Field
-              value={currentTag}
-              onBlur={onTagBlur}
-              onKeyDown={onTagKeyDown}
-              onChange={onTagChange}
-            />
-          </Pill.Group>
-        </PillsInput>
+      <MultiSelect
+        searchable
+        label="Tag(s)"
+        placeholder="Tag(s)"
+         data={tagList.map(tag => ({value: tag.id, label: tag.name}))}
+        {...form.getInputProps("tags")} 
+        />
 
       <Group>
         <NumberInput w={200} label="Price" {...form.getInputProps("price")} />

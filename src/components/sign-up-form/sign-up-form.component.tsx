@@ -1,6 +1,6 @@
 import { Schema, type SignUpFormT } from "@/components/sign-up-form/scehma";
 import styles from "@/components/sign-up-form/sign-up-form.module.css";
-import { createAccountThunk } from "@/api/account";
+import { createAccountThunk, getAccountByIdThunk } from "@/api/account";
 import { fetchSignUp } from "@/data/auth/authSlice";
 import { fetchSignInWithGoogle } from "@/data/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/data/hooks";
@@ -10,8 +10,9 @@ import { Box, Button, Group, TextInput } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 import type { AuthError } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "@/context/user.context";
 
 const SignUpForm = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +21,7 @@ const SignUpForm = () => {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const plan = useAppSelector(selectBeginnerPlan());
+  const { setSkipInitialAccountFetch } = useContext(UserContext);
 
   useEffect(() => {
     if (currentUser) {
@@ -42,6 +44,7 @@ const SignUpForm = () => {
     setLoading(true);
     const { password, email, name } = data;
     try {
+      setSkipInitialAccountFetch(true);
       const { uid } = await dispatch(fetchSignUp({ email, password, name })).unwrap();
       await dispatch(
         createAccountThunk({
@@ -49,10 +52,14 @@ const SignUpForm = () => {
           authId: uid,
           email,
           id: "",
-          planId: plan?.id ?? "2241b29e996448ee8acd0a3bd84ca27a",
+          planId: plan?.id ?? "32485feb-5e7d-42ea-91b6-132c127c6012",
           onboardingComplete: false,
         }),
       ).unwrap();
+      
+      await dispatch(getAccountByIdThunk());
+
+      setSkipInitialAccountFetch(false);
     } catch (err) {
       console.error(err)
       notifications.show({

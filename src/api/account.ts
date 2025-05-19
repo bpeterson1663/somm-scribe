@@ -34,6 +34,7 @@ export const createAccountThunk = createAsyncThunk<
 
 export const getAccountByIdThunk = createAsyncThunk<
   AccountT,
+  void,
   {
     state: RootState;
   }

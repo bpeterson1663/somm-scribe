@@ -6,7 +6,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { UserContext } from "@/context/user.context";
 import { useAppDispatch, useAppSelector } from "@/data/hooks";
 import { fetchPlans } from "@/api/plan";
+import { fetchVarietals } from '@/api/varietal'
 import { fetchTastingsThunk } from "@/api/tasting";
+import { fetchRegions } from "@/api/region";
+import { fetchTags } from "@/api/tag";
 
 const Layout = lazy(() => import("@/components/layout/layout.component"));
 
@@ -24,11 +27,34 @@ const NotFound = lazy(() => import("@/pages/not-found/NotFound"));
 
 function App() {
   const dispatch = useAppDispatch();
-  const { account } = useAppSelector((state) => state.account);
+  const { account, loaded } = useAppSelector((state) => state.account);
+  const { plansLoaded } = useAppSelector((state) => state.plan )
+  const { varietalsLoaded } = useAppSelector(state => state.varietal)
+  const { regionsLoaded } = useAppSelector(state => state.region)
+  const { tagsLoaded } = useAppSelector(state => state.tag)
+
   useEffect(() => {
     const onLoad = async () => {
-      await dispatch(fetchPlans()).unwrap();
-      if (account?.id) {
+      const promises = []
+      if (!plansLoaded) {
+        promises.push(dispatch(fetchPlans()).unwrap())
+      }
+
+      if (!varietalsLoaded) {
+        promises.push(dispatch(fetchVarietals()).unwrap())
+      }
+
+      if (!regionsLoaded) {
+        promises.push(dispatch(fetchRegions()).unwrap())
+      }
+
+      if (!tagsLoaded) {
+        promises.push(dispatch(fetchTags()).unwrap())
+      }
+
+      await Promise.all(promises)
+
+      if (account?.id && loaded) {
         try {
           await dispatch(fetchTastingsThunk())
         } catch (err) {

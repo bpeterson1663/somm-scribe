@@ -14,9 +14,9 @@ interface Props {
 }
 
 export function Card({ wine, url }: Props) {
-  const navigate = useNavigate();
-  const { id, region, date, name, imageUrl, varietals, rating, wouldBuyAgain, tags } = wine;
-
+  const navigate = useNavigate(); 
+  const { id, region, date, name, imageUrl, varietals, rating, wouldBuyAgain, tags } = wine
+  
   return (
     <div
       key={id}
@@ -40,7 +40,7 @@ export function Card({ wine, url }: Props) {
           <Text className="date" size="s"><IconCalendarWeek size={16}/> {dayjs(date).format("MM/DD/YYYY")}</Text>
           <Rating className="rating" value={rating} readOnly />
           <div className="badge-container">
-          {varietals.map((varietal, idx) => (
+          {varietals.map((varietal) => (
             <Badge 
               styles={{
                 root: {
@@ -51,11 +51,11 @@ export function Card({ wine, url }: Props) {
               size="md"  
               color="primary.1" 
               leftSection={<IconTag  size={14}  />} 
-              key={`${varietal}+${idx}`}>
-                {varietal}
+              key={varietal.id}>
+                {varietal.name}
               </Badge>
           ))}
-          {tags.map((tag, idx) => (
+          {tags.map((tag) => (
             <Badge 
               styles={{
                 root: {
@@ -66,8 +66,8 @@ export function Card({ wine, url }: Props) {
               size="md"  
               color="primary.1" 
               leftSection={<IconTag  size={14}  />} 
-              key={`${tag}+${idx}`}>
-                {tag}
+              key={tag.id}>
+                {tag.name}
               </Badge>
           ))}
           <Badge 
@@ -80,7 +80,7 @@ export function Card({ wine, url }: Props) {
             size="md" 
             color="primary.1" 
             leftSection={<IconWorldStar size={14} />}>
-              {region}
+              {region?.name}
             </Badge>
             {wouldBuyAgain && 
             <Badge 

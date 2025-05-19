@@ -113,7 +113,7 @@ export const fetchSignInWithGoogle = createAsyncThunk<
     if (!user.email) {
       return null;
     }
-    //TODO: refactor
+
     const account = await authApiClient<AccountT | undefined>('/accounts');
     if (account) {
       return account

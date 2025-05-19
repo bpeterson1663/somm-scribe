@@ -106,8 +106,8 @@ export default function TastingId() {
         </Modal>
         <Stack align="flex-start" justify="flex-start" gap="xs" mt={10} w={180}>
           <Title order={5}>Name: {name}</Title>
-          <Text size="md">Varietal(s): {varietals.join(", ")}</Text>
-          <Text size="md">Region: {region}</Text>
+          <Text size="md">Varietal(s): {varietals.map(varietal => varietal.name).join(", ")}</Text>
+          <Text size="md">Region: {region.country}</Text>
           <Text size="md">Price: {price}</Text>
         </Stack>
       </Group>

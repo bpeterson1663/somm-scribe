@@ -10,6 +10,7 @@ export interface InitialPlanState {
   status: FetchStatusT;
   planList: PlanT[];
   plan: PlanT;
+  plansLoaded: boolean;
 }
 
 const initialState: InitialPlanState = {
@@ -17,6 +18,7 @@ const initialState: InitialPlanState = {
   status: "idle",
   planList: [],
   plan: {} as PlanT,
+  plansLoaded: false,
 };
 
 export const planSlice = createSlice({
@@ -32,7 +34,8 @@ export const planSlice = createSlice({
       });
 
       state.planList = planList;
-    });
+      state.plansLoaded = true;
+    })
   },
 });
 

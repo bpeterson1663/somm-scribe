@@ -28,6 +28,7 @@ const NewTasting = () => {
 
   const onSubmitHandler = async (data: TastingT) => {
     setIsLoading(true);
+    debugger;
     try {
       const { id } = await dispatch(createTastingThunk({ ...data, accountId: account?.id ?? "" })).unwrap();
 
