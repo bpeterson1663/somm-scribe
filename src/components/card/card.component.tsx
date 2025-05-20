@@ -1,6 +1,6 @@
 
 import { getDefaultWineImage } from "@/helpers";
-import type { TastingT } from "@/schemas/tastings";
+import type { TastingEnrichedT } from "@/schemas/tastings";
 import { Badge, Image, Rating, Text, Title } from "@mantine/core";
 import { IconTag, IconWorldStar, IconCalendarWeek, IconCheck } from "@tabler/icons-react";
 import dayjs from "dayjs";
@@ -9,7 +9,7 @@ import grapeIcon from "@/assets/images/grape-icon.svg";
 import "@/components/card/card.scss";
 
 interface Props {
-  wine: TastingT;
+  wine: TastingEnrichedT;
   url: "tastings";
 }
 

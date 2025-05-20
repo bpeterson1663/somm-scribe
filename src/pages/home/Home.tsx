@@ -2,16 +2,14 @@ import { Card } from "@/components/card/card.component";
 import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
 import { useAppSelector } from "@/data/hooks";
-import { selectUserPlan } from "@/data/plan/planSelector";
-import { selectAllTastings } from "@/data/tasting/tastingSelectors";
+import { selectTastingListEnriched } from "@/data/tasting/tastingSelectors";
 import styles from "@/pages/styles/pages.module.css";
 import { Button, Group, Stack, Title } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
-  const tastingList = useAppSelector(selectAllTastings);
-  const currentPlan = useAppSelector(selectUserPlan);
+  const tastingList = useAppSelector(selectTastingListEnriched);
 
   return (
     <PageContainer>
@@ -23,7 +21,6 @@ export default function Home() {
               View All
             </Button>
           </Group>
-
           <section className={styles["preview-list"]}>
             {tastingList.slice(0, 10).map((tasting) => {
               if (tasting) {
@@ -42,7 +39,6 @@ export default function Home() {
       <Footer>
         <Group justify="flex-end">
           <Button
-            // disabled={typeof currentPlan.maxTasting === "number" && tastingList.length >= currentPlan.maxTasting}
             onClick={() => navigate("/tastings/new")}
             id="add-tastings"
           >

@@ -60,24 +60,34 @@ export function DetailsTasting() {
         required
         data={regionList.map(region => ({value: region.id, label: region.name}))}
         label="Region"
-        {...form.getInputProps("region")}
+        name="region"
+        value={form.values.region}
+        onChange={(value) => form.setFieldValue("region", value ?? "")}
       />
 
-      <MultiSelect  
-        searchable
-        label="Varietal(s)"
-        placeholder="Varietal(s)"
-        data={varietalList.map(varietal => ({value: varietal.id, label: varietal.name}))}
-        {...form.getInputProps("varietals")} 
+         <MultiSelect
+        label="Varietals"
+        data={varietalList.map((v) => ({
+          value: v.id,
+          label: v.name,
+        }))}
+        value={form.values.varietals}
+        onChange={(value) => form.setFieldValue("varietals", value)}
+        error={form.errors.varietals}
       />
 
       <MultiSelect
-        searchable
-        label="Tag(s)"
-        placeholder="Tag(s)"
-         data={tagList.map(tag => ({value: tag.id, label: tag.name}))}
-        {...form.getInputProps("tags")} 
-        />
+        label="Tags"
+        data={tagList.map((tag) => ({
+          value: tag.id,
+          label: tag.name,
+        }))}
+        value={form.values.tags}
+        onChange={(value) => form.setFieldValue("tags", value)}
+        error={form.errors.tags}
+      />
+
+   
 
       <Group>
         <NumberInput w={200} label="Price" {...form.getInputProps("price")} />

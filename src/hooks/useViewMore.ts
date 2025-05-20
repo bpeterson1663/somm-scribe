@@ -1,11 +1,11 @@
-import type { TastingT } from "@/schemas/tastings";
+import type { TastingEnrichedT } from "@/schemas/tastings";
 import { useEffect, useState } from "react";
 
 const VIEW_INCREMENT = 20;
 
-export function useViewMore(list: TastingT[]) {
+export function useViewMore(list: TastingEnrichedT[]) {
   const [moreAvailable, setMoreAvailable] = useState(true);
-  const [viewable, setViewable] = useState<TastingT[]>([]);
+  const [viewable, setViewable] = useState<TastingEnrichedT[]>([]);
   const [currentCount, setCurrentCount] = useState(0);
   const [search, setSearch] = useState("");
 

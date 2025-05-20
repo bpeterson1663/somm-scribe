@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/data/hooks";
 import { createTastingThunk, editTastingThunk } from "@/api/tasting";
 import styles from "@/pages/styles/pages.module.css";
 import { TastingFormProvider, useTastingForm } from "@/pages/tastings/form-context";
-import { INITIAL_VALUES, TastingSchema, type TastingT } from "@/schemas/tastings";
+import { INITIAL_FORM_VALUES, TastingT, TastingTSchema } from "@/schemas/tastings";
 import { Box, Button } from "@mantine/core";
 import { zodResolver } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
@@ -20,13 +20,16 @@ const NewTasting = () => {
   const form = useTastingForm({
     validateInputOnBlur: true,
     initialValues: {
-      ...INITIAL_VALUES,
+      ...INITIAL_FORM_VALUES,
       accountId: account?.id ?? "",
     },
-    validate: zodResolver(TastingSchema),
+    validate: zodResolver(TastingTSchema),
   });
 
+  console.log(form.errors)
+
   const onSubmitHandler = async (data: TastingT) => {
+    debugger;
     setIsLoading(true);
     debugger;
     try {

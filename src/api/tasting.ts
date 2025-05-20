@@ -48,10 +48,15 @@ export const createTastingThunk = createAsyncThunk<
       rating,
     });
 
-    return await authApiClient<TastingT>('/tastings', {
+    const { id } = await authApiClient<TastingT>('/tastings', {
       method: "POST",
       body,
     });
+
+    return {
+      ...request,
+      id,
+    }
   } catch (err) {
     return rejectWithValue(err);
   }
@@ -88,10 +93,11 @@ export const editTastingThunk = createAsyncThunk<
   })
 
   try {
-    return await authApiClient(`/tastings/${id}`, {
+    await authApiClient<TastingT>(`/tastings/${id}`, {
       method: "PATCH",
       body
     })
+    return {...data}
   } catch (err) {
     return rejectWithValue(err);
   }

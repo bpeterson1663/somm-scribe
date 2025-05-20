@@ -1,30 +1,32 @@
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { useDisclosure } from "@mantine/hooks";
+import { notifications } from "@mantine/notifications";
+import { ActionIcon, Button, Group, Image, Modal, Rating, Stack, Text, Title } from "@mantine/core";
+import { IconTrash } from "@tabler/icons-react";
 import { Footer } from "@/components/footer/footer.component";
 import PageContainer from "@/components/page-container/page-container.component";
 import { useAppDispatch, useAppSelector } from "@/data/hooks";
-import { selectTastingById } from "@/data/tasting/tastingSelectors";
+import { selectTastingByIdEnriched } from "@/data/tasting/tastingSelectors";
 import { deleteTastingThunk } from "@/api/tasting";
 import { tastingSetEdit } from "@/data/tasting/tastingSlice";
 import { getDefaultWineImage } from "@/helpers";
+import type { TastingEnrichedT } from "@/schemas/tastings";
+
 import styles from "@/pages/styles/pages.module.css";
-import type { TastingT } from "@/schemas/tastings";
-import { ActionIcon, Button, Group, Image, Modal, Rating, Stack, Text, Title } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { notifications } from "@mantine/notifications";
-import { IconTrash } from "@tabler/icons-react";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 
 export default function TastingId() {
   const params = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const id = params.id ?? "";
-  const tasting = useAppSelector(selectTastingById(id));
+  const tasting = useAppSelector(selectTastingByIdEnriched(id));
   const [itemToDelete, setItemToDelete] = useState("");
   const [opened, { open, close }] = useDisclosure(false);
   const [loading, setLoading] = useState(false);
   const [imageEnlarged, setImageEnlarged] = useState(false);
-
+  
   if (!tasting) {
     navigate("/");
     return null;
@@ -59,7 +61,7 @@ export default function TastingId() {
     }
   };
 
-  const handleEditClick = (wine: TastingT) => {
+  const handleEditClick = (wine: TastingEnrichedT) => {
     dispatch(tastingSetEdit(wine));
     navigate("/tastings/edit");
   };

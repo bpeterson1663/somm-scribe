@@ -1,6 +1,6 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import type { TastingT } from "@/schemas/tastings";
+import type { TastingEnrichedT, TastingT } from "@/schemas/tastings";
 import type { FetchStatusT, MessageT } from "@/types";
 import type { RootState } from "@/data/store";
 import { createTastingThunk, deleteTastingThunk, editTastingThunk, fetchTastingsThunk } from "@/api/tasting";
@@ -9,22 +9,20 @@ interface InitialTastingState {
   message: MessageT;
   status: FetchStatusT;
   tastingList: TastingT[];
-  tasting: TastingT | null;
-  publicTastingList: TastingT[];
+  tasting: TastingEnrichedT | null;
 }
 const initialState: InitialTastingState = {
   message: null,
   status: "idle",
   tastingList: [],
   tasting: null,
-  publicTastingList: [],
 };
 
 export const tastingSlice = createSlice({
   name: "tasting",
   initialState,
   reducers: {
-    tastingSetEdit: (state, action: PayloadAction<TastingT>) => {
+    tastingSetEdit: (state, action: PayloadAction<TastingEnrichedT>) => {
       state.tasting = action.payload;
     },
   },
